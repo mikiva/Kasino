@@ -5,13 +5,10 @@ public class Card {
 	int number;
 	String color;
 
-	public Card() {
-
-
+	public Card(int number, String color) {
+		this.number = number;
+		this.color = color;
 	}
-
-
-
 
 }
 
