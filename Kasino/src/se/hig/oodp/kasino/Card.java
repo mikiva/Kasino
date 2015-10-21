@@ -11,6 +11,8 @@ public class Card {
 		
 		System.out.println("sdasd");
 		System.out.println("test");
+		
+		//daspdjasofjsiofjh
 	}
 	
 	public String test() {
