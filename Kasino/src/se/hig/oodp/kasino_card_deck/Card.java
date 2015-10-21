@@ -4,17 +4,20 @@ public class Card {
 
 	int number;
 	String color;
+	int id;
 	
 	String cardName;
 
-	public Card(int number, String color) {
+	public Card(int number, String color, int id) {
 		this.number = number;
 		this.color = color;
+		this.id = id;
 
 	}
+
 	
 	public String toString(){
-		cardName = color + " " + number;
+		cardName = id + " " + color + " " + number;
 		
 		
 		return cardName;

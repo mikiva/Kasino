@@ -18,6 +18,7 @@ public class Main {
 		
 		
 		System.out.println("Blanda?");
+		System.out.println("Klart vi ska blanda!!");
 		
 		deck.shuffle();
 		deck.print();

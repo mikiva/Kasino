@@ -26,9 +26,11 @@ public class MainFrame extends JFrame {
 		// - DrawingPanel - en JPanel dÃ¤r figurerna ritas ut
 		// - ControlPanel - en JPanel som innehÃ¥ller styrelementen
 		JPanel mainPanel = new JPanel ();
+		
 		mainPanel.setLayout(new BorderLayout());
 		add(mainPanel);
 		
+		pack();
 		setVisible(true);
 	}
 

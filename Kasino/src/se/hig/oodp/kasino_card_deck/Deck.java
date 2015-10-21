@@ -16,8 +16,10 @@ public class Deck {
 
 		for(int i = 0; i < 4; i++) {
 			for(int n = 0; n < 13; n++) 
-				deck.add(new Card(n+1, s[i]));
+				deck.add(new Card(n+1, s[i], deck.size()+1));
 		}
+		
+
 		
 	}
 	
@@ -25,7 +27,7 @@ public class Deck {
 		for(Card c : deck) {
 			System.out.println(c);
 		}
-		System.out.println(deck.size());
+		System.out.println("Lekstorlek: "+ deck.size());
 	}
 	
 	public void shuffle(){
