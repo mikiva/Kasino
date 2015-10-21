@@ -17,7 +17,7 @@ public class Card {
 		
 		cardName = color + " " + number;
 		
-		return "Foo";
+		return cardName;
 		
 	}
 
