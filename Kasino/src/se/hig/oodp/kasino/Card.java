@@ -12,7 +12,7 @@ public class Card {
 		System.out.println("sdasd");
 		System.out.println("test");
 		
-		//daspdjasofjsiofjh
+		//daspdjasofjsiofjhwerwee
 	}
 	
 	public String test() {
