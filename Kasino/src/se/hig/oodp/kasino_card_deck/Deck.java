@@ -16,11 +16,13 @@ public class Deck {
 			for(int n = 0; n < 13; n++) 
 				deck.add(new Card(n+1, s[i]));
 		}
+		
 	}
 	
 	public void print() {
 		for(Card c : deck) {
 			System.out.println(c);
 		}
+		System.out.println(deck.size());
 	}
 }
