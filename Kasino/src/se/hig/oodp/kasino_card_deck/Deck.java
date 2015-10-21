@@ -19,7 +19,7 @@ public class Deck {
 		
 	}
 	
-	public void print() {
+	public void print() { 
 		for(Card c : deck) {
 			System.out.println(c);
 		}
