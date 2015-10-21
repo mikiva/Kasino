@@ -14,11 +14,8 @@ public class Card {
 	}
 	
 	public String toString(){
-		
 		cardName = color + " " + number;
-		
 		return cardName;
-		
 	}
 
 }
