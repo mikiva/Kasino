@@ -7,6 +7,10 @@ public class Card {
 	
 	public Card() {
 		
+		
+		
+		System.out.println("sdasd");
+		
 	}
 	
 	public String test() {
