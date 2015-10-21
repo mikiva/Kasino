@@ -16,5 +16,11 @@ public class Card {
 	public String test() {
 		return "hej";
 	}
+	
+	
+	public void asddas(){
+		
+		
+	}
 
 }
