@@ -8,6 +8,7 @@ public class test2 {
 		System.out.println("Fungerar!");
 		System.out.println("Heasdasdj");
 		//hedhui
+		//fjkösdöfjksf
 	}
 	
 	
