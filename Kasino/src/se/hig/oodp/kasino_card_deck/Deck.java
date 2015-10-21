@@ -1,7 +1,9 @@
 package se.hig.oodp.kasino_card_deck;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 
 public class Deck {
 
@@ -25,4 +27,13 @@ public class Deck {
 		}
 		System.out.println(deck.size());
 	}
+	
+	public void shuffle(){
+		
+		
+		Collections.shuffle(deck);
+		
+	}
+	
+	
 }

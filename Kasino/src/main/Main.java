@@ -1,5 +1,6 @@
 package main;
 
+import se.hig.oodp.kasino.ui.MainFrame;
 import se.hig.oodp.kasino_card_deck.Deck;
 
 public class Main {
@@ -12,13 +13,19 @@ public class Main {
 		
 		
 		
+		
+		
+		
+		
 		System.out.println("Blanda?");
 		
 		deck.shuffle();
 		deck.print();
 		
 		
+		MainFrame frame = new MainFrame("hej");
 		
+		frame.repaint();
 		
 		
 		
