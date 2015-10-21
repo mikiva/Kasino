@@ -8,7 +8,24 @@ public class Main {
 		Deck deck = new Deck();
 		
 		deck.print();
+		
+		
+		
+		
+		System.out.println("Blanda?");
+		
+		deck.shuffle();
+		deck.print();
+		
+		
+		
+		
+		
+		
 
 	}
+	
+	
+
 
 }
