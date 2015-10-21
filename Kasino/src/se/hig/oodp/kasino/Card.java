@@ -8,5 +8,9 @@ public class Card {
 	public Card() {
 		
 	}
+	
+	public String test() {
+		return "hej";
+	}
 
 }
