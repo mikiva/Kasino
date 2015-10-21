@@ -6,8 +6,7 @@ import java.util.List;
 public class Deck {
 
 	List<Card> deck;
-	String[] s = new String[4];
-
+	String[] s = {"Clubs", "Spades", "Hearts", "Diamonds"};
 
 	public Deck() {
 
@@ -20,7 +19,7 @@ public class Deck {
 
 		for(int i = 0; i < 4; i++) {
 			for(int n = 0; n < 13; i++) 
-				deck.add(new Card(i, s[i]));
+				deck.add(new Card(n, s[i]));
 		}
 	}
 	
