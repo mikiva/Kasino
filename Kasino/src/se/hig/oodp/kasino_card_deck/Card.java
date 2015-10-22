@@ -13,16 +13,21 @@ public class Card {
 	String color;
 	int id;
 	BufferedImage img;
-	
+	String path;
+	File f;
 	String cardName;
 
 	public Card(int number, String color, int id) throws IOException {
 		this.number = number;
 		this.color = color;
 		this.id = id;
+	
+		path = "\"H:/KASINO/CARDS/material/"+(id)+".png\"";
 		
-		img = ImageIO.read(new File("/KASINO/CARDS/material/" + id +".png"));
+		System.out.println(path);
 
+		f = new File("H:/KASINO/CARDS/material/"+(id)+".png");
+		img = ImageIO.read(f);
 	}
 
 	
@@ -35,6 +40,7 @@ public class Card {
 	}
 	
 	public Image getImage(){
+		
 		
 		
 		return img;

@@ -16,9 +16,9 @@ public class Deck {
 
 		deck = new ArrayList<Card>();
 
-		for(int n = 14; n > 0; n--){
+		for(int n = 14; n > 1; n--){
 			for(int i = 0; i < 4; i++) 			 
-				deck.add(new Card(n, s[i], deck.size()+1));
+				deck.add(new Card(n, s[i], deck.size()));
 		}
 
 
@@ -42,7 +42,7 @@ public class Deck {
 	public Image getImage(int id){
 		
 		
-		return deck.get(id).getImage();
+		return deck.get(id).img;
 		
 	}
 
