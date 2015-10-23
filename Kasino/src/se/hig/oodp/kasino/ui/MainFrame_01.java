@@ -52,15 +52,10 @@ public class MainFrame_01 extends JFrame{
 		playerDrawing = new Drawing[4];
 
 		centerPanel = new JPanel();
-		centerPanel.setBounds(267, 155, 450, 450);
 		JPanel leftPlayerPanel = new JPanel();
-		leftPlayerPanel.setBounds(-62, 93, 150, 600);
 		JPanel rightPlayerPanel = new JPanel();
-		rightPlayerPanel.setBounds(888, 80, 150, 600);
 		JPanel userPlayerPanel = new JPanel();
-		userPlayerPanel.setBounds(267, 679, 450, 157);
 		JPanel oppositePlayerPanel = new JPanel();
-		oppositePlayerPanel.setBounds(267, -75, 450, 157);
 		
 		
 		
@@ -71,6 +66,7 @@ public class MainFrame_01 extends JFrame{
 		setPreferredSize (new Dimension (1000, 800));
 
 		this.draw = draw;
+		getContentPane().setLayout(null);
 		img = deck.getImage(12);
 
 
@@ -132,15 +128,32 @@ public class MainFrame_01 extends JFrame{
 			rightPlayerPanel.add(label1);	
 			
 		}
-		getContentPane().setLayout(null);
+		
+		
+		
+		
+
+		centerPanel.setBounds(267, 155, 450, 450);
 		getContentPane().add(centerPanel);
 		centerPanel.setLayout(new GridLayout(2, 6, 0, 0));
+
+		
+		leftPlayerPanel.setBounds(-62, 93, 150, 600);
 		getContentPane().add(leftPlayerPanel);
 		leftPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
+
+		
+		rightPlayerPanel.setBounds(888, 80, 150, 600);
 		getContentPane().add(rightPlayerPanel);
 		rightPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
+
+		
+		userPlayerPanel.setBounds(267, 679, 450, 157);
 		getContentPane().add(userPlayerPanel);
 		userPlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
+
+		
+		oppositePlayerPanel.setBounds(267, -75, 450, 157);
 		getContentPane().add(oppositePlayerPanel);
 		oppositePlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
 		//mainPanel.setLayout(new BorderLayout(0, 0));
