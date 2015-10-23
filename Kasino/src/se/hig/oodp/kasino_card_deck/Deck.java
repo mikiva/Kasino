@@ -42,7 +42,7 @@ public class Deck {
 	public Image getImage(int id){
 		
 		
-		return deck.get(id).img;
+		return deck.get(id).getImage();
 		
 	}
 

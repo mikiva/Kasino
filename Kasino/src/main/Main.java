@@ -4,8 +4,10 @@ import java.awt.Image;
 import java.io.IOException;
 
 
+
 import se.hig.oodp.kasino.ui.MainFrame;
 import se.hig.oodp.kasino.ui.Drawing;
+import se.hig.oodp.kasino.ui.MainFrame_01;
 import se.hig.oodp.kasino_card_deck.Deck;
 
 public class Main {
@@ -14,6 +16,7 @@ public class Main {
 	
 
 	public static void main(String[] args) throws IOException {
+		
 		Deck deck = new Deck();
 		
 		deck.print();
@@ -32,7 +35,7 @@ public class Main {
 		deck.print();
 		
 		
-		MainFrame frame = new MainFrame("hej", deck, draw);
+		MainFrame_01 frame = new MainFrame_01("hej", deck, draw);
 		
 		
 		frame.setVisible(true);

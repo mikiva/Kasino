@@ -29,19 +29,20 @@ public class Drawing extends JPanel implements MouseListener{
 
 	}
 
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);		
-		Graphics2D g2 = (Graphics2D) g;
-
-	
-			
-		g2.drawImage(img, 0, 0, null);
-		
-		
-		repaint();
-
-
-	}
+//	public void paintComponent(Graphics g) {
+//		super.paintComponent(g);		
+//		Graphics2D g2 = (Graphics2D) g;
+//
+//	
+//	//	g2.fillRect(0, 100, 100, 100);
+//			
+//		g2.drawImage(img, 0,0, null);
+//		
+//		
+//		repaint();
+//
+//
+//	}
 
 	public void setImage(Image img){
 
