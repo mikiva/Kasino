@@ -15,7 +15,6 @@ public class Card {
 	BufferedImage img;
 	String path;
 	File f;
-	String cardName;
 
 	public Card(int number, String color, int id) throws IOException {
 		this.number = number;
@@ -32,24 +31,14 @@ public class Card {
 
 	
 	public String toString(){
-		cardName = id + " " + color + " " + number;
-		
-		
-	
-		return cardName;
+		return id + " " + color + " " + number;
 	}
 	
 	public Image getImage(){
-		
-		
-		
 		return img;
-		
-		
 	}
 	
 	public int getId(){
-		
 		return id;
 	}
 	
