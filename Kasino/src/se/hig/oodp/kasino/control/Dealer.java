@@ -41,7 +41,16 @@ public class Dealer implements DealerInterface{
 	@Override
 	public void dealToPlayer(int playerID) {
 		// TODO Auto-generated method stub
+		if(!deck.getDeck().isEmpty()) {
+			//deala till spelarna
+		}
 		
+	}
+	
+	public boolean isDeckEmpty() {
+		if(deck.getDeck().isEmpty())
+			return true;
+		return false;
 	}
 
 }

@@ -45,6 +45,11 @@ public class Deck {
 		return deck.get(id).getImage();
 		
 	}
+	
+	
+	public List<Card> getDeck() {
+		return deck;
+	}
 
 
 }
