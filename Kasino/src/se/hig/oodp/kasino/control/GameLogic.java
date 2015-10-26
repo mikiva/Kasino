@@ -29,6 +29,12 @@ public class GameLogic {
 		dealer.deal();
 
 	}
+	
+	public void gameOver() {
+		if(rules.isGameOver()) {
+			//gör något som avslutar spelet
+		}
+	}
 
 
 
