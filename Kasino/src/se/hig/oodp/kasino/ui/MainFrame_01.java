@@ -82,7 +82,7 @@ public class MainFrame_01 extends JFrame {
 		this.spelPlan = spelplan;
 	//	getContentPane().setLayout(null);
 		//img = deck.getImage(12);
-
+ 
 
 		//add(draw);
 		add(spelPlan);

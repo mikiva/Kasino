@@ -34,7 +34,7 @@ public class Drawing extends JPanel implements MouseListener{
 
 	public Drawing(Deck deck){
 
-		this.deck = deck;
+		this.deck = deck; 
 		
 
 		addMouseListener(this);

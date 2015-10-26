@@ -55,7 +55,7 @@ public class Main {
 		deck.print();
 
 
-		MainFrame_01 frame = new MainFrame_01("hej", deck, draw, spelPlan);
+		MainFrame_01 frame = new MainFrame_01("hej", deck, draw, spelPlan); 
 
 
 		frame.setVisible(true);

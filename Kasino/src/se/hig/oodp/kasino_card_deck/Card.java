@@ -26,7 +26,7 @@ public class Card {
 		System.out.println(path);
 
 		f = new File("CARDS/material/"+(id)+".png");
-		img = ImageIO.read(f);
+		img = ImageIO.read(f); 
 	}
 
 	

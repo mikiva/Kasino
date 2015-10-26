@@ -197,7 +197,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		// TODO Auto-generated method stub
 		//	System.out.println("exited");
 
-
+ 
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {

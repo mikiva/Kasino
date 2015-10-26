@@ -29,7 +29,7 @@ public class Deck {
 		for(Card c : deck) {
 			System.out.println(c);
 		}
-		System.out.println("Lekstorlek: "+ deck.size());
+		System.out.println("Lekstorlek: "+ deck.size()); 
 	}
 
 	public void shuffle(){
