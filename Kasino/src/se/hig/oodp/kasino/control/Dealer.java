@@ -8,12 +8,13 @@ public class Dealer implements DealerInterface{
 
 	
 	Deck deck;
+	int nbrOfPlayers;
 	
-	public Dealer(Deck deck){
+	public Dealer(Deck deck, int nbr){
 		
 		this.deck = deck;
 		
-		
+		this.nbrOfPlayers = nbr;
 		
 	}
 	
@@ -42,7 +43,11 @@ public class Dealer implements DealerInterface{
 	public void dealToPlayer(int playerID) {
 		// TODO Auto-generated method stub
 		if(!deck.getDeck().isEmpty()) {
-			//deala till spelarna
+			
+			
+			
+			
+			
 		}
 		
 	}

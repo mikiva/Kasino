@@ -32,14 +32,14 @@ public class Main {
 		
 		
 
-		
+		int nbrOfPlayers = 4;
 		
 		Deck deck = new Deck();
 		SpelPlan spelPlan = new SpelPlan(deck);
 
 		deck.print();
 
-		Dealer dealer = new Dealer(deck);
+		Dealer dealer = new Dealer(deck, nbrOfPlayers);
 		GameRules rules = new GameRules();
 		//GameLogic logic = new GameLogic(rules, dealer/*, nbrOfPlayers*/);
 

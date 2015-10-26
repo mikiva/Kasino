@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -15,6 +16,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 
+import se.hig.oodp.kasino_card_deck.Card;
 import se.hig.oodp.kasino_card_deck.Deck;
 
 public class SpelPlan extends JPanel implements MouseListener, MouseMotionListener{
@@ -36,6 +38,9 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	JPanel rightPlayerPanel;
 	JPanel userPlayerPanel;
 	JPanel oppositePlayerPanel;
+	
+	
+	ArrayList<Card> playerHand = new ArrayList<Card>();
 
 
 	int x_offset;
@@ -63,6 +68,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		setLayout(null);
 		for (int i = 0; i <12; i++){
 
+			
 			img = deck.getImage(i);
 			iconPane = new JLayeredPane();
 			label1 = new JLabel(new ImageIcon(img));
