@@ -8,12 +8,17 @@ import java.io.IOException;
 
 
 
+
+
+import javax.swing.JPanel;
+
 import se.hig.oodp.kasino.control.Dealer;
 import se.hig.oodp.kasino.control.GameLogic;
 import se.hig.oodp.kasino.control.GameRules;
 import se.hig.oodp.kasino.ui.MainFrame;
 import se.hig.oodp.kasino.ui.Drawing;
 import se.hig.oodp.kasino.ui.MainFrame_01;
+import se.hig.oodp.kasino.ui.SpelPlan;
 import se.hig.oodp.kasino_card_deck.Deck;
 
 public class Main {
@@ -26,10 +31,11 @@ public class Main {
 		
 		
 		
-		
+
 		
 		
 		Deck deck = new Deck();
+		SpelPlan spelPlan = new SpelPlan(deck);
 
 		deck.print();
 
@@ -42,14 +48,14 @@ public class Main {
 		Drawing draw = new Drawing(deck);
 
 
-		System.out.println("Blanda?");
-		System.out.println("Klart vi ska blanda!!");
+//		System.out.println("Blanda?");
+//		System.out.println("Klart vi ska blanda!!");
 
 		//	deck.shuffle();
 		deck.print();
 
 
-		MainFrame_01 frame = new MainFrame_01("hej", deck, draw);
+		MainFrame_01 frame = new MainFrame_01("hej", deck, draw, spelPlan);
 
 
 		frame.setVisible(true);

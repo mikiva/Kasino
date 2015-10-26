@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 import javax.swing.Icon;
 
 import se.hig.oodp.kasino_card_deck.Deck;
@@ -21,12 +22,17 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.Box;
 
-public class MainFrame_01 extends JFrame{
+public class MainFrame_01 extends JFrame {
 
 	private JPanel centerPanel;
+	private JPanel mainPanel;
+	
 
 	/**
 	 * Launch the application.
@@ -38,6 +44,11 @@ public class MainFrame_01 extends JFrame{
 	Image img2;
 
 
+	private SpelPlan spelPlan;
+
+
+
+
 	Drawing[] playerDrawing;
 
 	Scanner sc = new Scanner(System.in);
@@ -45,118 +56,131 @@ public class MainFrame_01 extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame_01(String title, Deck deck, Drawing draw) throws HeadlessException
+	public MainFrame_01(String title, Deck deck, Drawing draw, SpelPlan spelplan) throws HeadlessException
 	{
 		super (title);
 		this.deck = deck;
 		playerDrawing = new Drawing[4];
 
-		centerPanel = new JPanel();
-		JPanel leftPlayerPanel = new JPanel();
-		JPanel rightPlayerPanel = new JPanel();
-		JPanel userPlayerPanel = new JPanel();
-		JPanel oppositePlayerPanel = new JPanel();
-		
-		
-		
+		mainPanel = new JPanel();
+
+//				centerPanel = new JPanel();
+//				JPanel leftPlayerPanel = new JPanel();
+//				JPanel rightPlayerPanel = new JPanel();
+//				JPanel userPlayerPanel = new JPanel();
+//				JPanel oppositePlayerPanel = new JPanel();
 
 
-		
+
+
+
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize (new Dimension (1000, 800));
 
 		this.draw = draw;
-		getContentPane().setLayout(null);
-		img = deck.getImage(12);
+		this.spelPlan = spelplan;
+	//	getContentPane().setLayout(null);
+		//img = deck.getImage(12);
 
 
 		//add(draw);
+		add(spelPlan);
+		pack();
+
+	//	for(int i = 10; i <14; i++){
 
 
-		for(int i = 10; i <14; i++){
-
-			
 
 
-			
+
 			//draw.add(label1);
-		//	playerDrawing[3].add(label1);
+			//	playerDrawing[3].add(label1);
 
 		}
-		
-		
-		for (int i = 0; i <12; i++){
-			
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			centerPanel.add(label1);	
-			
-		}
-		
+
+		//
+		//		for (int i = 0; i <12; i++){
+		//
+		//			img = deck.getImage(i);
+		//			JLabel label1 = new JLabel(new ImageIcon(img));
+		//			centerPanel.add(label1);	
+		//
+		//		}
+		//
+		//
+		//
+		//
+		//		for (int i = 0; i <4; i++){
+		//
+		//			img = deck.getImage(i);
+		//			JLabel label1 = new JLabel(new ImageIcon(img));
+		//			userPlayerPanel.add(label1);	
+		//
+		//		}
+		//
+		//
+		//
+		//
+		//		for (int i = 0; i <4; i++){
+		//
+		//			img = deck.getImage(i);
+		//			JLabel label1 = new JLabel(new ImageIcon(img));
+		//			leftPlayerPanel.add(label1);	
+		//
+		//		}
+		//		for (int i = 0; i <4; i++){
+		//
+		//			img = deck.getImage(i);
+		//			JLabel label1 = new JLabel(new ImageIcon(img));
+		//			oppositePlayerPanel.add(label1);	
+		//
+		//		}
+		//		for (int i = 0; i <4; i++){
+		//
+		//			img = deck.getImage(i);
+		//			JLabel label1 = new JLabel(new ImageIcon(img));
+		//			rightPlayerPanel.add(label1);	
+		//
+		//		}
 
 
-		
-		for (int i = 0; i <4; i++){
-			
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			userPlayerPanel.add(label1);	
-			
-		}
-		
-		
-		
-		
-		for (int i = 0; i <4; i++){
-			
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			leftPlayerPanel.add(label1);	
-			
-		}
-		for (int i = 0; i <4; i++){
-			
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			oppositePlayerPanel.add(label1);	
-			
-		}
-		for (int i = 0; i <4; i++){
-			
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			rightPlayerPanel.add(label1);	
-			
-		}
-		
-		
-		
-		
 
-		centerPanel.setBounds(267, 155, 450, 450);
-		getContentPane().add(centerPanel);
-		centerPanel.setLayout(new GridLayout(2, 6, 0, 0));
 
-		
-		leftPlayerPanel.setBounds(-62, 93, 150, 600);
-		getContentPane().add(leftPlayerPanel);
-		leftPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
 
-		
-		rightPlayerPanel.setBounds(888, 80, 150, 600);
-		getContentPane().add(rightPlayerPanel);
-		rightPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
 
-		
-		userPlayerPanel.setBounds(267, 679, 450, 157);
-		getContentPane().add(userPlayerPanel);
-		userPlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
 
-		
-		oppositePlayerPanel.setBounds(267, -75, 450, 157);
-		getContentPane().add(oppositePlayerPanel);
-		oppositePlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
-		//mainPanel.setLayout(new BorderLayout(0, 0));
+
+
+
+
+
+
+
+		//centerPanel.setBounds(267, 155, 450, 450);
+		//getContentPane().add(centerPanel);
+		//centerPanel.setLayout(new GridLayout(2, 6, 0, 0));
+		//
+		//
+		//leftPlayerPanel.setBounds(-62, 93, 150, 600);
+		//getContentPane().add(leftPlayerPanel);
+		//leftPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
+		//
+		//
+		//rightPlayerPanel.setBounds(888, 80, 150, 600);
+		//getContentPane().add(rightPlayerPanel);
+		//rightPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
+		//
+		//
+		//userPlayerPanel.setBounds(267, 679, 450, 157);
+		//getContentPane().add(userPlayerPanel);
+		//userPlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
+		//
+		//
+		//oppositePlayerPanel.setBounds(267, -75, 450, 157);
+		//getContentPane().add(oppositePlayerPanel);
+		//oppositePlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
+		////mainPanel.setLayout(new BorderLayout(0, 0));
 
 
 		//playerDrawing[0].setImage(img);
@@ -168,13 +192,13 @@ public class MainFrame_01 extends JFrame{
 
 
 
-		pack();
+		
 
 	}
-	
-
-	
-	
 
 
-}
+
+
+
+
+
