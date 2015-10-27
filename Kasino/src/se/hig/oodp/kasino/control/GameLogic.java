@@ -40,15 +40,15 @@ public class GameLogic {
 
 		dealer.deal(playerList);
 		cardsOnTable();
-		
+
 
 	}
-public void cardsOnTable(){
-	
-	spelPlan.cardsOnTable(playerList);
-	spelPlan.repaint();
-}
-	
+	public void cardsOnTable(){
+
+		spelPlan.cardsOnTable(playerList);
+		spelPlan.repaint();
+	}
+
 
 
 	public void gameOver() {

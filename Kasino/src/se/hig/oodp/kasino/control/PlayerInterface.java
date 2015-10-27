@@ -9,9 +9,9 @@ import se.hig.oodp.kasino_card_deck.Card;
 public interface PlayerInterface {
 	
 	public int getPlayerId();
-	public void playCard();
+	public void placeCard();
 	public void takeCard();
-	public void setHand(Card card);
+	public void addToHand(Card card);
 	
 	
 
