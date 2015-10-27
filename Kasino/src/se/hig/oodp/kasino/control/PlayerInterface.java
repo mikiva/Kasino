@@ -10,7 +10,7 @@ public interface PlayerInterface {
 	
 	public int getPlayerId();
 	public void placeCard();
-	public void takeCard();
+	public void takeCard(Card[] cardArr, Card card);
 	public void addToHand(Card card);
 	
 	

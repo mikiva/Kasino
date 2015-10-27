@@ -3,7 +3,10 @@ package se.hig.oodp.kasino.control;
 import java.awt.List;
 import java.io.IOException;
 
+
+
 import se.hig.oodp.kasino.ui.SpelPlan;
+import se.hig.oodp.kasino_card_deck.Card;
 import se.hig.oodp.kasino_card_deck.Deck;
 
 public class GameLogic {
@@ -35,7 +38,18 @@ public class GameLogic {
 		//deal();
 
 	}
+	
+	public void cardTaken(Card[] onTable, Card playerCard, int id) {
+		if(rules.isLegal(onTable, playerCard)) {
+			//ge spelaren poäng (baserat på id kanske?)
+		}
+		else {
+			//???
 
+		}
+	}
+
+	//kan man inte ha den här funktionen i newGame?
 	public void deal(){
 
 		dealer.deal(playerList);

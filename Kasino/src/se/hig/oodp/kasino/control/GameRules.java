@@ -5,10 +5,6 @@ import se.hig.oodp.kasino_card_deck.Card;
 
 
 public class GameRules {
-	/*
-	 * ska vi föröka ha saker som hur många spelare, antal kort att deala, antal kort på bordet osv. i den här klassen?
-	 * eftersom de är regler till spelet, kanske också gör det lättare ifall man vill ändra på sådana saker
-	 */
 	
 	private Dealer dealer;
 	private int cardsOnTable;

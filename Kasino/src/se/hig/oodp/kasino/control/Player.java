@@ -10,6 +10,7 @@ public class Player implements PlayerInterface{
 	
 	private List<Card> cards;
 	private int playerID;
+	private GameLogic logic;
 	
 	public Player(int playerID){
 		
@@ -31,8 +32,8 @@ public class Player implements PlayerInterface{
 	}
 
 	@Override
-	public void takeCard() {
-		// TODO Auto-generated method stub
+	public void takeCard(Card[] cardArr, Card card) {
+		logic.cardTaken(cardArr, card, playerID);
 		
 	}
 
