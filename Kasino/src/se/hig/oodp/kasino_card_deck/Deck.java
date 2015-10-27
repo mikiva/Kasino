@@ -50,6 +50,14 @@ public class Deck {
 	public List<Card> getDeck() {
 		return deck;
 	}
+	
+	public Card drawCard(){
+		
+		
+		Card drawn = deck.get(0); //Sätter en variabel som returnerar ett kort
+		deck.remove(0);//Tar bort det översta kortet i leken
+		return drawn;		//Returnerar kortet
+	}
 
 
 }

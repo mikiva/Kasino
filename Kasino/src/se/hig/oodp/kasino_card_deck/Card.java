@@ -23,7 +23,7 @@ public class Card {
 	
 		path = "\"CARDS/material/"+(id)+".png\"";
 		
-		System.out.println(path);
+	//	System.out.println(path);
 
 		f = new File("CARDS/material/"+(id)+".png");
 		img = ImageIO.read(f); 
