@@ -5,9 +5,11 @@ import java.io.IOException;
 
 
 
+
 import se.hig.oodp.kasino.ui.SpelPlan;
 import se.hig.oodp.kasino_card_deck.Card;
 import se.hig.oodp.kasino_card_deck.Deck;
+import se.hig.oodp.kasino_card_deck.Table;
 
 public class GameLogic {
 
@@ -17,6 +19,8 @@ public class GameLogic {
 	int nbrOfPlayers;
 	Player[] playerList;
 	SpelPlan spelPlan;
+
+	private Table table;
 
 
 
@@ -38,15 +42,24 @@ public class GameLogic {
 		//deal();
 
 	}
-	
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+
 	public void cardTaken(Card[] onTable, Card playerCard, int id) {
 		if(rules.isLegal(onTable, playerCard)) {
 			//ge spelaren poäng (baserat på id kanske?)
+
 		}
 		else {
 			//???
 
 		}
+	}
+	public void cardPlaced(Card c) {
+		if(!table.isCardOnTable(c)) 
+			table.setCard(c);
 	}
 
 	//kan man inte ha den här funktionen i newGame?

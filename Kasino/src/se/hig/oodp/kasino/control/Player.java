@@ -34,7 +34,6 @@ public class Player implements PlayerInterface{
 	@Override
 	public void takeCard(Card[] cardArr, Card card) {
 		logic.cardTaken(cardArr, card, playerID);
-		
 	}
 
 	@Override

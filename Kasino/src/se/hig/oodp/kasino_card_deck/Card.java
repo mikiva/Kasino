@@ -28,7 +28,6 @@ public class Card {
 		f = new File("CARDS/material/"+(id)+".png");
 		img = ImageIO.read(f); 
 	}
-
 	
 	public String toString(){
 		return id + " " + color + " " + value;

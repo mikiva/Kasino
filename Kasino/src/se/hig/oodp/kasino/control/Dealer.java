@@ -4,12 +4,17 @@ import java.awt.List;
 import java.util.Collections;
 
 import se.hig.oodp.kasino_card_deck.Deck;
+import se.hig.oodp.kasino_card_deck.Table;
 
 public class Dealer implements DealerInterface{
 
 
 	private Deck deck;
 	private Player[] playerList;
+	private GameLogic logic;
+	
+	private GameRules rules;
+	private Table table;
 	
 	private static int CARDS_TO_DEAL = 4;
 
@@ -20,10 +25,28 @@ public class Dealer implements DealerInterface{
 	public void setPlayerList(Player[] playerList) {
 		this.playerList = playerList;
 	}
+	
+	public void setLogic(GameLogic logic) {
+		this.logic = logic;
+	}
+	
+	public void setRules(GameRules rules) {
+		this.rules = rules;
+	}
+	
+	public void setTable(Table table) {
+		this.table = table;
+	}
 
 	@Override
 	public void shuffleDeck() {
 		deck.shuffle();
+	}
+	
+	public void dealToTable() {
+		for (int i = 0; i < rules.getCardsOnTable(); i++) {
+			table.setCard(deck.drawCard());
+		}
 	}
 	
 	/*

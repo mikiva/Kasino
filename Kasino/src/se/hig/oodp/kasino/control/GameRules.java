@@ -17,6 +17,10 @@ public class GameRules {
 		this.cardsOnTable = cardsOnTable;			// om man vill ändra
 	}
 	
+	public int getCardsOnTable() {
+		return cardsOnTable;
+	}
+	
 	public void setDealer(Dealer dealer) {
 		this.dealer = dealer;
 	}
