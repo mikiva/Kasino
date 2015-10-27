@@ -9,15 +9,15 @@ import javax.imageio.ImageIO;
 
 public class Card {
 
-	int number;
+	int value;
 	String color;
 	int id;
 	BufferedImage img;
 	String path;
 	File f;
 
-	public Card(int number, String color, int id) throws IOException {
-		this.number = number;
+	public Card(int value, String color, int id) throws IOException {
+		this.value = value;
 		this.color = color;
 		this.id = id;
 	
@@ -31,7 +31,7 @@ public class Card {
 
 	
 	public String toString(){
-		return id + " " + color + " " + number;
+		return id + " " + color + " " + value;
 	}
 	
 	public Image getImage(){
@@ -40,6 +40,10 @@ public class Card {
 	
 	public int getId(){
 		return id;
+	}
+	
+	public int getValue() {
+		return value;
 	}
 	
 	
