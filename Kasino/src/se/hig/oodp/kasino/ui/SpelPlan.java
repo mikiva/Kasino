@@ -197,7 +197,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 				labels[j] = new JLabel(new ImageIcon(img));
 				//iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
 				//contentPane.add(iconPane.get(j), BorderLayout.EAST);
-			//	labels[i].setLocation(i+ 20, 30);
+				//	labels[i].setLocation(i+ 20, 30);
 				//contentPane.add(labels[i]);
 				//add(labels[i]);
 				//img = deck.getImage(i);
@@ -225,8 +225,9 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-		
 		g2.drawImage(img, xLoc, 100, null);
+
+
 		g2.drawLine(100, 100, 300, 300);
 
 
