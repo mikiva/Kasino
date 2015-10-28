@@ -65,6 +65,7 @@ public class MainFrame_01 extends JFrame {
 	public MainFrame_01(String title, Deck deck, Drawing draw, SpelPlan spelplan) throws HeadlessException
 	{
 		super (title);
+		getContentPane().setEnabled(false);
 		this.deck = deck;
 		playerDrawing = new Drawing[4];
 
@@ -88,7 +89,8 @@ public class MainFrame_01 extends JFrame {
 
 		pack();
 		//add(draw);
-		add(spelPlan);
+		getContentPane().add(spelPlan);
+		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 
 		//	for(int i = 10; i <14; i++){
