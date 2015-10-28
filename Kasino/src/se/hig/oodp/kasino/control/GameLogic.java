@@ -13,31 +13,34 @@ import se.hig.oodp.kasino_card_deck.Table;
 
 public class GameLogic {
 
-	Deck deck;
 	GameRules rules;
 	Dealer dealer;
-	int nbrOfPlayers;
-	Player[] playerList;
 	SpelPlan spelPlan;
 
 	private Table table;
 
+	private PlayerList playerList;
+	
+	int nbrOfPlayerUsers;
+	int nbrOfPlayerAI;
 
 
-	public GameLogic(GameRules rules, Dealer dealer, int nbr, Deck deck, SpelPlan plan){
+	public GameLogic(GameRules rules, Dealer dealer, SpelPlan plan){
 
 
 		this.rules = rules;
 		this.dealer = dealer;
-		playerList = new Player[nbr];
-		this.nbrOfPlayers = nbr;
-		this.deck = deck;
 		this.spelPlan = plan;
+		
+		playerList = new PlayerList(nbrOfPlayerUsers, nbrOfPlayerAI);
+//		playerList[0] = new PlayerUser(1);
+//		for (int i = 1; i< playerList.length; i++)
+//			playerList[i] = new PlayerUser(i+1);
 
-		playerList[0] = new Player(1);
-		for (int i = 1; i< playerList.length; i++)
-			playerList[i] = new Player(i+1);
-
+	}
+	
+	public void setRules(GameRules rules) {
+		this.rules = rules;
 	}
 
 	public void setTable(Table table) {
@@ -66,18 +69,20 @@ public class GameLogic {
 	}
 
 	public void newGame() throws IOException{ //Återställer kortleken och rensar spelarnas händer
-
-		dealer.dealToPlayers();
 		
-		spelPlan.cardsOnTable(playerList);
-		spelPlan.repaint();
-		
-		deck = new Deck();
-
-		for (int i = 0; i < playerList.length; i++)
+		for (int i = 0; i < playerList.getNumberOfPlayers(); i++)
 		{
-			playerList[i].clearHand();
+			try {
+				playerList.getPlayer(i).clearHand();
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println(e);
+			}
 		}
+		dealer.resetDeck();
+		dealer.dealToPlayers();
 
+		spelPlan.cardsOnTable(playerList.getPlayerList());
+		spelPlan.repaint();
 	}
 }

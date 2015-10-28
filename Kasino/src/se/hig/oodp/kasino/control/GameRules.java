@@ -8,17 +8,23 @@ public class GameRules {
 	
 	private Dealer dealer;
 	private int cardsOnTable;
+	private int cardsToDeal;
+	
+	private static final int MININUM_PLAYERS = 2;
+	private static final int MAXIMUM_PLAYERS = 4;
 	
 	public GameRules() {
+		
 		cardsOnTable = 4;
-	}
-	
-	public void setCardsOnTable(int cardsOnTable) {
-		this.cardsOnTable = cardsOnTable;			// om man vill ändra
+		cardsToDeal = 4;
 	}
 	
 	public int getCardsOnTable() {
 		return cardsOnTable;
+	}
+	
+	public int getCardsToDeal() {
+		return cardsToDeal;
 	}
 	
 	public void setDealer(Dealer dealer) {
@@ -48,6 +54,14 @@ public class GameRules {
 		if(dealer.isDeckEmpty()) // och om spelarna har slut på kort i hand) 
 			return true;
 		return false;
+	}
+	
+	public boolean isEnoughPlayers(int nbrOfPlayers) {
+		if(nbrOfPlayers < MININUM_PLAYERS) 
+			return false;
+		if(nbrOfPlayers > MAXIMUM_PLAYERS)
+			return false;
+		return true;
 	}
 	
 	
