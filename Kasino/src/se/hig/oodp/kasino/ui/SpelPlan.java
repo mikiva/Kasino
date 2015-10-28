@@ -242,6 +242,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 	}
 
+
 	//		@Override
 	//		public void paintComponent(Graphics g) {
 	//			super.paintComponent(g);
@@ -254,6 +255,20 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	//
 	//		}
 
+
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+
+		g2.drawImage(img, xLoc, 100, null);
+
+
+		g2.drawLine(100, 100, 300, 300);
+
+
+	}
 
 
 
