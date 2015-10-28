@@ -38,13 +38,16 @@ import se.hig.oodp.kasino_card_deck.Deck;
 public class Main {
 
 
-	private static Dealer dealer;
-	private static GameRules rules;
-	private static GameLogic logic;
+
 
 
 	public static void main(String[] args) throws IOException {
 
+		
+		Dealer dealer;
+		GameRules rules;
+		GameLogic logic;
+		
 		JMenuBar menuBar;
 		//JMenu menu, submenu;
 		JMenuItem menuItem;

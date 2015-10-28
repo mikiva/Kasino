@@ -29,7 +29,7 @@ public class GameLogic {
 
 		playerList[0] = new Player(1);
 		for (int i = 1; i< playerList.length; i++)
-			playerList[i] = new Player(i);
+			playerList[i] = new Player(i+1);
 
 
 		//deal();
@@ -40,15 +40,15 @@ public class GameLogic {
 
 		dealer.deal(playerList);
 		cardsOnTable();
-		
+
 
 	}
-public void cardsOnTable(){
-	
-	spelPlan.cardsOnTable(playerList);
-	spelPlan.repaint();
-}
-	
+	public void cardsOnTable(){
+
+		spelPlan.cardsOnTable(playerList);
+		spelPlan.repaint();
+	}
+
 
 
 	public void gameOver() {
