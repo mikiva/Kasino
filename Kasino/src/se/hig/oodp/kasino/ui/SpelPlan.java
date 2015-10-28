@@ -277,7 +277,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 		if (draggy != null){
-			draggy.setLocation(e.getX()-x_offset , e.getY()-y_offset);
+			draggy.setLocation(e.getX() , e.getY());
 		}
 
 
@@ -300,6 +300,14 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		// TODO Auto-generated method stub
 		//	System.out.println("klick");
 
+		JComponent jc = (JComponent)e.getSource();
+		
+		
+		
+		e.getSource();
+		
+		
+		
 		//	System.out.println((e.getSource().toString()));
 
 
@@ -323,22 +331,22 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		System.out.println("Pressed");
 		drag=true;
 
-		JComponent jc = (JComponent)e.getSource();
-		Component child = jc.findComponentAt(e.getPoint());
-		if (child instanceof JLabel)
-		{
+		//JComponent jc = (JComponent)e.getSource();
+	//	Component child = jc.findComponentAt(e.getPoint());
+//		if (child instanceof JLabel)
+//		{
+//
+//			x_offset = e.getX() - child.getX();
+//			y_offset = e.getY() - child.getY();
+//
+//			draggy = (JLabel)child;
+//			draggy.setSize(draggy.getPreferredSize());
+//
+//		}
 
-			x_offset = e.getX() - child.getX();
-			y_offset = e.getY() - child.getY();
-
-			draggy = (JLabel) child;
-			draggy.setSize(draggy.getPreferredSize());
-
-		}
 
 
-
-		jc.repaint();
+	//	jc.repaint();
 
 
 

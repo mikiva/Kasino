@@ -69,7 +69,12 @@ public class MenuBar extends MenuComponent implements MenuContainer, Serializabl
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				logic.deal(); //anropar spellogiken som delar ut kort till varje spelare
+				try {
+					logic.newGame();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} //anropar spellogiken som delar ut kort till varje spelare
 			}
 		});
 		//menuItem.addActionListener(deal);
