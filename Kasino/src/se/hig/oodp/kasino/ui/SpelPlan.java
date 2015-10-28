@@ -196,6 +196,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 				for (int j = 0; j < labels.length; j++)
 				{	
 
+
 					imgs.add(players[i].getHand().get(j).getImage());
 					labels[j] = new JLabel(new ImageIcon(img));
 					iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
@@ -204,6 +205,17 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 					contentPane.add(labels[i]);
 					add(labels[i]);
 					img = deck.getImage(i);
+
+				img = players[i].getHand().get(j).getImage();
+				labels[j] = new JLabel(new ImageIcon(img));
+				//iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
+				//contentPane.add(iconPane.get(j), BorderLayout.EAST);
+				//	labels[i].setLocation(i+ 20, 30);
+				//contentPane.add(labels[i]);
+				//add(labels[i]);
+				//img = deck.getImage(i);
+				repaint();
+
 
 
 					xLoc += 10;
@@ -229,6 +241,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 	}
+
 	//		@Override
 	//		public void paintComponent(Graphics g) {
 	//			super.paintComponent(g);
@@ -240,6 +253,8 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	//
 	//
 	//		}
+
+
 
 
 	@Override

@@ -1,19 +1,20 @@
 package se.hig.oodp.kasino.control;
 
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import se.hig.oodp.kasino_card_deck.Card;
 
 public class Player implements PlayerInterface{
 
 	
-	private ArrayList<Card> cards;
+	private List<Card> cards;
 	private int playerID;
+	private GameLogic logic;
 	
-	public Player(int id){
+	public Player(int playerID){
 		
-		this.playerID = id;
+		this.playerID = playerID;
 		cards = new ArrayList<Card>();
 		
 	}
@@ -21,40 +22,31 @@ public class Player implements PlayerInterface{
 	
 	@Override
 	public int getPlayerId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return playerID;
 	}
 
 	@Override
-	public void playCard() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void takeCard() {
+	public void placeCard() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setHand(Card card) {
+	public void takeCard(Card[] cardArr, Card card) {
+		logic.cardTaken(cardArr, card, playerID);
+	}
 
-
+	@Override
+	public void addToHand(Card card) {
 		cards.add(card);
-
 	}
 	
-	public ArrayList<Card> getHand(){
-		
-		
+	public List<Card> getHand(){
 		return cards;
 	}
 	
 	public void clearHand(){
-		
-		cards.clear();
-		
+		cards.clear();	
 	}
 	
 
