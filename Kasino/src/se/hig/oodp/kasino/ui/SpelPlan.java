@@ -26,6 +26,7 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 import se.hig.oodp.kasino.control.Player;
 import se.hig.oodp.kasino_card_deck.Card;
 import se.hig.oodp.kasino_card_deck.Deck;
+import java.awt.FlowLayout;
 
 public class SpelPlan extends JPanel implements MouseListener, MouseMotionListener{
 
@@ -64,16 +65,11 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		this.deck = deck;
 		imgs = new ArrayList<Image>();
 		contentPane = new JPanel();
-
-		centerPanel = new JPanel();
-		leftPlayerPanel = new JPanel();
-		rightPlayerPanel = new JPanel();
-		userPlayerPanel = new JPanel();
-		oppositePlayerPanel = new JPanel();
+		contentPane.setSize(1000, 800);
+		contentPane.setLocation(0, 0);
+		//contentPane.setLayout(null);
+		add(contentPane);
 		setPreferredSize(new Dimension(1000, 800));
-		contentPane.setPreferredSize (new Dimension (1000, 800));
-		centerPanel.setLayout(null);
-		contentPane.setLayout(new BorderLayout());
 		Container content = new JPanel(new GridLayout(3, 3, 0, 0));
 		setLayout(null);
 		for (int i = 0; i <12; i++){
@@ -95,83 +91,97 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 
-
-
-
-		for (int i = 0; i <4; i++){
-
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			userPlayerPanel.add(label1);	
-
-		}
-
-
-
-
-		for (int i = 0; i <4; i++){
-
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			leftPlayerPanel.add(label1);	
-
-		}
-		for (int i = 0; i <4; i++){
-
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			oppositePlayerPanel.add(label1);	
-
-		}
-		for (int i = 0; i <4; i++){
-
-			img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			rightPlayerPanel.add(label1);	
-
-		}
-
-
-		centerPanel.setBounds(267, 155, 450, 450);
+		contentPane.setPreferredSize (new Dimension (1000, 800));
+		//add(contentPane);
+		contentPane.setLayout(new BorderLayout());
+		
+		centerPanel = new JPanel();
+		centerPanel.setBounds(0, 0, 10, 0);
+		contentPane.add(centerPanel);
+		FlowLayout fl_centerPanel = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		fl_centerPanel.setAlignOnBaseline(true);
+		centerPanel.setLayout(null);
 		centerPanel.addMouseListener(this);
-		add(centerPanel);
-
-		centerPanel.setLayout(new GridLayout(2, 6, 0, 0));
-
-
-		leftPlayerPanel.setBounds(-62, 93, 150, 600);
+		leftPlayerPanel = new JPanel();
+		leftPlayerPanel.setLayout(null);
+		leftPlayerPanel.setSize(150, 450);
+		contentPane.add(leftPlayerPanel, BorderLayout.WEST);
 		leftPlayerPanel.addMouseListener(this);
-		add(leftPlayerPanel);
-		leftPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
-
-
-		rightPlayerPanel.setBounds(888, 80, 150, 600);
+		leftPlayerPanel.setLayout(null);
+		leftPlayerPanel.setBounds(0,111, 150, 800);
+		rightPlayerPanel = new JPanel();
+		rightPlayerPanel.setBounds(20, 0, 10, 0);
+		contentPane.add(rightPlayerPanel, BorderLayout.EAST);
 		rightPlayerPanel.addMouseListener(this);
-		add(rightPlayerPanel);
-		rightPlayerPanel.setLayout(new GridLayout(4, 1, 0, 0));
-
-
-		userPlayerPanel.setBounds(267, 679, 450, 157);
+		rightPlayerPanel.setLayout(null);
+		userPlayerPanel = new JPanel();
+		userPlayerPanel.setBounds(30, 0, 10, 0);
+		contentPane.add(userPlayerPanel, BorderLayout.SOUTH);
 		userPlayerPanel.addMouseListener(this);
-		add(userPlayerPanel);
-		userPlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
-
-
-		oppositePlayerPanel.setBounds(267, -75, 450, 157);
+		userPlayerPanel.setLayout(null);
+		oppositePlayerPanel = new JPanel();
+		oppositePlayerPanel.setBounds(40, 0, 10, 0);
+		contentPane.add(oppositePlayerPanel, BorderLayout.NORTH);
+		oppositePlayerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		oppositePlayerPanel.addMouseListener(this);
-		add(oppositePlayerPanel);
-		oppositePlayerPanel.setLayout(new GridLayout(0, 4, 0, 0));
+
+
+		
+		
+		
+
+		for (int i = 0; i <4; i++){
+
+			img = deck.getImage(i);
+			JLabel label1 = new JLabel(new ImageIcon(img));
+			label1.addMouseListener(this);
+			label1.addMouseMotionListener(this);
+			userPlayerPanel.add(label1, BorderLayout.SOUTH);	
+
+		}
 
 
 
+
+		for (int i = 0; i <4; i++){
+
+			img = deck.getImage(i);
+			JLabel label1 = new JLabel(new ImageIcon(img));
+			label1.addMouseListener(this);
+			label1.addMouseMotionListener(this);
+			leftPlayerPanel.add(label1, BorderLayout.PAGE_START);	
+
+		}
+		for (int i = 0; i <4; i++){
+
+			img = deck.getImage(i+1);
+			JLabel label1 = new JLabel(new ImageIcon(img));
+			label1.addMouseListener(this);
+			label1.addMouseMotionListener(this);
+			oppositePlayerPanel.add(label1, BorderLayout.NORTH);	
+
+		}
+		for (int i = 0; i <4; i++){
+
+			img = deck.getImage(i+2);
+			JLabel label1 = new JLabel(new ImageIcon(img));
+			label1.addMouseListener(this);
+			label1.addMouseMotionListener(this);
+			rightPlayerPanel.add(label1, BorderLayout.PAGE_END);	
+
+		}
+		
+
+
+		for (int i = 0; i <4; i++){
+
+			img = deck.getImage(i+3);
+			JLabel label1 = new JLabel(new ImageIcon(img));
+			label1.addMouseListener(this);
+			label1.addMouseMotionListener(this);
+			centerPanel.add(label1, BorderLayout.CENTER);	
+
+		}
 
 
 		System.out.println("hejsan");
@@ -180,7 +190,6 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 		setVisible(true);
-		add(contentPane);
 		repaint();
 	}
 
