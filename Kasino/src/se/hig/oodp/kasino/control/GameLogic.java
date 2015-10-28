@@ -38,9 +38,6 @@ public class GameLogic {
 		for (int i = 1; i< playerList.length; i++)
 			playerList[i] = new Player(i);
 
-
-		//deal();
-
 	}
 
 	public void setTable(Table table) {
@@ -62,22 +59,6 @@ public class GameLogic {
 			table.setCard(c);
 	}
 
-	//kan man inte ha den här funktionen i newGame?
-	public void deal(){
-
-		dealer.deal(playerList);
-		cardsOnTable();
-
-
-	}
-	public void cardsOnTable(){
-
-		spelPlan.cardsOnTable(playerList);
-		spelPlan.repaint();
-	}
-
-
-
 	public void gameOver() {
 		if(rules.isGameOver()) {
 			//gör något som avslutar spelet
@@ -86,6 +67,11 @@ public class GameLogic {
 
 	public void newGame() throws IOException{ //Återställer kortleken och rensar spelarnas händer
 
+		dealer.dealToPlayers();
+		
+		spelPlan.cardsOnTable(playerList);
+		spelPlan.repaint();
+		
 		deck = new Deck();
 
 		for (int i = 0; i < playerList.length; i++)
