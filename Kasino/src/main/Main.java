@@ -63,13 +63,13 @@ public class Main {
 
 		//deck.print();
 
-		dealer = new Dealer(deck, nbrOfPlayers);
-		rules = new GameRules();
+		dealer = new Dealer(deck);
+		rules = new GameRules(4, 0);
 
 
 		deck.shuffle();
 
-		logic = new GameLogic(rules, dealer, nbrOfPlayers, deck, spelPlan);
+		logic = new GameLogic(rules, dealer, spelPlan);
 		MenuBar menu = new MenuBar(logic);
 
 		Drawing draw = new Drawing(deck);
