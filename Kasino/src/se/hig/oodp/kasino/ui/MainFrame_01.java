@@ -87,15 +87,16 @@ public class MainFrame_01 extends JFrame {
 		//	getContentPane().setLayout(null);
 		//img = deck.getImage(12);
 
-		pack();
+		
 		//add(draw);
 		getContentPane().add(spelPlan);
 		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 
 		//	for(int i = 10; i <14; i++){
-
+		
 		spelPlan.repaint();
+		pack();
 		setVisible(true);
 
 

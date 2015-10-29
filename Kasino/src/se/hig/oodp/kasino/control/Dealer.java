@@ -11,14 +11,15 @@ public class Dealer implements DealerInterface{
 
 
 	private Deck deck;
-	private PlayerUser[] playerList;
+	private Player[] playerList;
 	private GameLogic logic;
 
 	private GameRules rules;
 	private Table table;
 
-	public Dealer(Deck deck){
+	public Dealer(Deck deck, GameRules rules){
 		this.deck = deck;
+		this.rules = rules;
 	}
 
 	@Override
@@ -36,6 +37,7 @@ public class Dealer implements DealerInterface{
 	public void dealToPlayers() {
 		if(!isDeckEmpty()) {
 
+			shuffleDeck();
 			for (int i = 0; i < playerList.length; i++) {
 				for (int n = 0; n < rules.getCardsToDeal() ; n++) 
 					playerList[n].addToHand(deck.drawCard());
@@ -54,7 +56,9 @@ public class Dealer implements DealerInterface{
 			return true;
 		return false;
 	}
-	public void setPlayerList(PlayerUser[] playerList) {
+	public void setPlayerList(Player[] playerList) {
+
+
 		this.playerList = playerList;
 	}
 

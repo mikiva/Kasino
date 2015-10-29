@@ -78,9 +78,12 @@ public class GameLogic {
 			}
 		}
 		dealer.resetDeck();
+		dealer.setPlayerList(playerList.getPlayerList());
 		dealer.dealToPlayers();
+		
 
 		spelPlan.cardsOnTable(playerList.getPlayerList());
 		spelPlan.repaint();
+		//spelPlan.repaint();
 	}
 }

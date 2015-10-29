@@ -52,9 +52,13 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	JPanel rightPlayerPanel;
 	JPanel userPlayerPanel;
 	JPanel centerPanelContainer;
-
+	JPanel oppositePlayerPanel;
+	JPanel leftPanelContainer;
+	JPanel userPanelContainer;
+	JPanel rightPanelContainer;
 	JPanel oppositePlayerContainer;
 	JLabel[] labels;
+	GridBagConstraints gbc;
 	ArrayList<Card> playerHand;
 	ArrayList<Image> imgs;
 
@@ -94,7 +98,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 			//						contentPane.add(iconPane.add(label1), BorderLayout.LINE_START);
 			//						add(iconPane.add(label1), BorderLayout.WEST);
 		}
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		gbc.gridheight = 150;
 
 
@@ -105,7 +109,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 		oppositePlayerContainer = new JPanel();
-		JPanel oppositePlayerPanel = new JPanel();
+		oppositePlayerPanel = new JPanel();
 		oppositePlayerContainer.setBounds(Window.WIDTH/2,0 , 500, 150);
 		oppositePlayerContainer.setPreferredSize(new Dimension(MainFrame_01.WIDTH, 150));
 		contentPane.add(oppositePlayerContainer, BorderLayout.NORTH);
@@ -113,12 +117,12 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		oppositePlayerContainer.add(oppositePlayerPanel);
 
 
-		JPanel leftPanelContainer = new JPanel();
+		leftPanelContainer = new JPanel();
 		leftPlayerPanel = new JPanel();
 		leftPlayerPanel.setPreferredSize(new Dimension(150, 500));
 		leftPanelContainer.add(leftPlayerPanel);
 
-		JPanel rightPanelContainer = new JPanel();
+		rightPanelContainer = new JPanel();
 		rightPlayerPanel = new JPanel();
 		rightPlayerPanel.setPreferredSize(new Dimension(150, 500));
 		rightPanelContainer.add(rightPlayerPanel);
@@ -126,14 +130,14 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		centerPanel = new JPanel();
 		centerPanelContainer = new JPanel();
-		centerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+		centerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		//centerPanelContainer.setLayout(new FlowLayout());
 		centerPanel.setPreferredSize(new Dimension(500,500));
 		centerPanelContainer.add(centerPanel);
 		//userPlayerPanel.setLayout(new GridLayout(1, 4));
 
-		
-		JPanel userPanelContainer = new JPanel();
+
+		userPanelContainer = new JPanel();
 		//userPanelContainer.setBounds(MainFrame_01.WIDTH, 0, 500, 150);
 		userPlayerPanel = new JPanel();
 		userPlayerPanel.setPreferredSize(new Dimension(500, 150));
@@ -174,15 +178,78 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		//oppositePlayerPanel.setBounds(120, 0, 234, 122);
 
+		setVisible(true);
+		repaint();
 
 
+
+
+	}
+
+
+	//	public void cardsOnTable(Player[] players){
+	//
+	//		xLoc = 100;
+	//		yLoc = 100;
+	//
+	//		try {
+	//			for (int i = 0; i < players.length; i++){
+	//
+	//				for (int j = 0; j < labels.length; j++)
+	//				{	
+	//
+	//
+	//					imgs.add(players[i].getHand().get(j).getImage());
+	//					labels[j] = new JLabel(new ImageIcon(img));
+	//					iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
+	//					contentPane.add(iconPane.get(j), BorderLayout.EAST);
+	//					labels[i].setLocation(i+ 20, 30);
+	//					contentPane.add(labels[i]);
+	//					add(labels[i]);
+	//					img = deck.getImage(i);
+	//
+	//					img = players[i].getHand().get(j).getImage();
+	//					labels[j] = new JLabel(new ImageIcon(img));
+	//					//iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
+	//					//contentPane.add(iconPane.get(j), BorderLayout.EAST);
+	//					//	labels[i].setLocation(i+ 20, 30);
+	//					//contentPane.add(labels[i]);
+	//					//add(labels[i]);
+	//					//img = deck.getImage(i);
+	//					repaint();
+	//
+	//
+	//
+	//					xLoc += 10;
+	//
+	//				}
+	//			}
+	//		} catch (IndexOutOfBoundsException e) {
+	//			// TODO Auto-generated catch block
+	//			System.out.println("Korten slut!");
+	//
+	//			e.printStackTrace();
+	//		}
+
+
+
+	//img = players[0].getHand().get(0).getImage();
+	//repaint();
+
+
+
+	//	paint(graphic);
+
+	public void cardsOnTable(Player[] players){
 
 
 
 
 		for (int i = 0; i <4; i++){
 
-			img = deck.getImage(i);
+
+			img = players[0].getHand().get(i).getImage();
+			//img = deck.getImage(i);
 			JLabel label1 = new JLabel(new ImageIcon(img));
 			label1.addMouseListener(this);
 			label1.addMouseMotionListener(this);
@@ -195,7 +262,8 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		for (int i = 0; i <4; i++){
 
-			img = deck.getImage(i);
+			img = players[1].getHand().get(i).getImage();
+			//img = deck.getImage(i);
 			JLabel label1 = new JLabel(new ImageIcon(img));
 			label1.addMouseListener(this);
 			label1.addMouseMotionListener(this);
@@ -204,7 +272,9 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		}
 		for (int i = 0; i <4; i++){
 
-			img = deck.getImage(i+1);
+			img = players[2].getHand().get(i).getImage();
+			//img = deck.getImage(i);
+
 			JLabel label1 = new JLabel(new ImageIcon(img));
 			label1.addMouseListener(this);
 			label1.addMouseMotionListener(this);
@@ -213,7 +283,9 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		}
 		for (int i = 0; i <4; i++){
 
-			img = deck.getImage(i+2);
+			img = players[3].getHand().get(i).getImage();
+
+			//img = deck.getImage(i+2);
 			JLabel label1 = new JLabel(new ImageIcon(img));
 			label1.addMouseListener(this);
 			label1.addMouseMotionListener(this);
@@ -236,70 +308,17 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		System.out.println("hejsan");
 
-
-
-
 		setVisible(true);
 		repaint();
-	}
-
-
-	public void cardsOnTable(Player[] players){
-
-		xLoc = 100;
-		yLoc = 100;
-
-		try {
-			for (int i = 0; i < players.length; i++){
-
-				for (int j = 0; j < labels.length; j++)
-				{	
-
-
-					imgs.add(players[i].getHand().get(j).getImage());
-					labels[j] = new JLabel(new ImageIcon(img));
-					iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
-					contentPane.add(iconPane.get(j), BorderLayout.EAST);
-					labels[i].setLocation(i+ 20, 30);
-					contentPane.add(labels[i]);
-					add(labels[i]);
-					img = deck.getImage(i);
-
-					img = players[i].getHand().get(j).getImage();
-					labels[j] = new JLabel(new ImageIcon(img));
-					//iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
-					//contentPane.add(iconPane.get(j), BorderLayout.EAST);
-					//	labels[i].setLocation(i+ 20, 30);
-					//contentPane.add(labels[i]);
-					//add(labels[i]);
-					//img = deck.getImage(i);
-					repaint();
-
-
-
-					xLoc += 10;
-
-				}
-			}
-		} catch (IndexOutOfBoundsException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Korten slut!");
-
-			e.printStackTrace();
-		}
-
-		repaint();
-
-		//img = players[0].getHand().get(0).getImage();
-		//repaint();
-
-
-
-		//	paint(graphic);
-
-
 
 	}
+
+
+
+
+
+
+
 
 
 	//		@Override

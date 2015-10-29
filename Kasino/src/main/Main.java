@@ -16,12 +16,15 @@ import java.io.IOException;
 
 
 
+
+
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.SwingUtilities;
 
 import se.hig.oodp.kasino.control.Dealer;
 import se.hig.oodp.kasino.control.GameLogic;
@@ -42,7 +45,8 @@ public class Main {
 
 
 	public static void main(String[] args) throws IOException {
-
+		
+		
 		
 		Dealer dealer;
 		GameRules rules;
@@ -63,9 +67,9 @@ public class Main {
 
 		//deck.print();
 
-		dealer = new Dealer(deck);
+		
 		rules = new GameRules(4, 0);
-
+		dealer = new Dealer(deck, rules);
 
 		deck.shuffle();
 
@@ -93,15 +97,17 @@ public class Main {
 
 		//menuBar.add(menu);
 		//frame.setJMenuBar(menuBar);
-		frame.repaint();
+		
 		frame.add(spelPlan);
-		spelPlan.setVisible(true);
+		
 		
 		frame.setVisible(true);
+		spelPlan.setVisible(true);
+		frame.repaint();
 
-		spelPlan.repaint();
+		//spelPlan.repaint();
 
-
+		
 
 	}
 

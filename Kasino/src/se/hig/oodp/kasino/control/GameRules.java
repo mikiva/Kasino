@@ -19,6 +19,9 @@ public class GameRules {
 		this.nbrOfPlayerAI = nbrOfPlayerAI;
 		cardsOnTable = 4;
 		cardsToDeal = 4;
+		
+		
+		
 	}
 	
 	public boolean isLegal(Card[] cardArr, Card c) {
