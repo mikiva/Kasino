@@ -69,7 +69,7 @@ public class Main {
 
 		deck.shuffle();
 
-		logic = new GameLogic(rules, dealer, nbrOfPlayers, deck, spelPlan);
+		logic = new GameLogic(rules, dealer, spelPlan);
 		MenuBar menu = new MenuBar(logic);
 
 		Drawing draw = new Drawing(deck);
