@@ -1,33 +1,40 @@
 package se.hig.oodp.kasino.control;
 
 import java.util.List;
+import java.util.Random;
 
 import se.hig.oodp.kasino_card_deck.Card;
 
 public class PlayerAI implements Player {
 	
-	int id;
+	private List<Card> cards;
+	private int playerID;
+	private GameLogic logic;
 	
-	public PlayerAI(int id) {
-		this.id = id;
+	public PlayerAI(int playerID) {
+		this.playerID = playerID;
 	}
 
 	@Override
 	public int getPlayerId() {
-		// TODO Auto-generated method stub
-		return 0;
+		return playerID;
 	}
 
 	@Override
 	public void placeCard(Card card) {
-		// TODO Auto-generated method stub
+		
+		logic.cardPlaced(card);
 		
 	}
 
 	@Override
 	public void takeCard(Card[] cardArr, Card card) {
 		// TODO Auto-generated method stub
-		
+		int num = 0;
+		for (int i = 0; i < cards.size(); i++) {
+			
+		}
+		placeCard(card);
 	}
 
 	@Override

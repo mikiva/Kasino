@@ -17,7 +17,7 @@ public class Dealer implements DealerInterface{
 	private GameRules rules;
 	private Table table;
 
-	public Dealer(Deck deck, int nbr){
+	public Dealer(Deck deck){
 		this.deck = deck;
 	}
 

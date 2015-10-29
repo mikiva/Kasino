@@ -63,8 +63,8 @@ public class Main {
 
 		//deck.print();
 
-		dealer = new Dealer(deck, nbrOfPlayers);
-		rules = new GameRules();
+		dealer = new Dealer(deck);
+		rules = new GameRules(4, 0);
 
 
 		deck.shuffle();
