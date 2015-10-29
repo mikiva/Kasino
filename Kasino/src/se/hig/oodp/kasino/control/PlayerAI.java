@@ -19,7 +19,7 @@ public class PlayerAI implements Player {
 	}
 
 	@Override
-	public void placeCard() {
+	public void placeCard(Card card) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -16,9 +16,7 @@ public class PlayerUser implements Player{
 		
 		this.playerID = playerID;
 		cards = new ArrayList<Card>();
-		
 	}
-	
 	
 	@Override
 	public int getPlayerId() {
@@ -26,8 +24,8 @@ public class PlayerUser implements Player{
 	}
 
 	@Override
-	public void placeCard() {
-		// TODO Auto-generated method stub
+	public void placeCard(Card card) {
+		logic.cardPlaced(card);
 		
 	}
 

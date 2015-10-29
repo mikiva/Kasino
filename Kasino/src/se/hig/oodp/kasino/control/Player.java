@@ -10,7 +10,7 @@ import se.hig.oodp.kasino_card_deck.Card;
 public interface Player {
 	
 	public int getPlayerId();
-	public void placeCard();
+	public void placeCard(Card card);
 	public void takeCard(Card[] cardArr, Card card);
 	public void addToHand(Card card);
 	public void clearHand();

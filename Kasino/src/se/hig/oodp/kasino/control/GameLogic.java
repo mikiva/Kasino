@@ -13,17 +13,13 @@ import se.hig.oodp.kasino_card_deck.Table;
 
 public class GameLogic {
 
-	GameRules rules;
-	Dealer dealer;
-	SpelPlan spelPlan;
+	private GameRules rules;
+	private Dealer dealer;
+	private SpelPlan spelPlan;
 
 	private Table table;
-
 	private PlayerList playerList;
-	
-	int nbrOfPlayerUsers;
-	int nbrOfPlayerAI;
-
+	private Scoreboard scoreboard;
 
 	public GameLogic(GameRules rules, Dealer dealer, SpelPlan plan){
 
@@ -31,14 +27,10 @@ public class GameLogic {
 		this.rules = rules;
 		this.dealer = dealer;
 		this.spelPlan = plan;
-		
-		playerList = new PlayerList(nbrOfPlayerUsers, nbrOfPlayerAI);
-//		playerList[0] = new PlayerUser(1);
-//		for (int i = 1; i< playerList.length; i++)
-//			playerList[i] = new PlayerUser(i+1);
 
+		playerList = new PlayerList(rules.getNbrOfPlayerUser(), rules.getNbrOfPlayerAI());
 	}
-	
+
 	public void setRules(GameRules rules) {
 		this.rules = rules;
 	}
@@ -47,13 +39,18 @@ public class GameLogic {
 		this.table = table;
 	}
 
+	public void setScoreboard(Scoreboard scoreboard) {
+		this.scoreboard = scoreboard;
+	}
+
 	public void cardTaken(Card[] onTable, Card playerCard, int id) {
 		if(rules.isLegal(onTable, playerCard)) {
-			//ge spelaren poäng (baserat på id kanske?)
-
-		}
-		else {
-			//???
+			try {
+				scoreboard.incrementScore(id);
+			}
+			catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println(e + " Något har gått fel med spelar-id och scoreboard-id.");
+			}
 
 		}
 	}
@@ -62,14 +59,15 @@ public class GameLogic {
 			table.setCard(c);
 	}
 
-	public void gameOver() {
-		if(rules.isGameOver()) {
-			//gör något som avslutar spelet
+	public String gameOver() {
+		if(rules.isGameOver(dealer, playerList)) {
+			return scoreboard.getPlayerScores();
 		}
+		return "";
 	}
 
-	public void newGame() throws IOException{ //Återställer kortleken och rensar spelarnas händer
-		
+	public void newGame() throws IOException { //Återställer kortleken och rensar spelarnas händer
+
 		for (int i = 0; i < playerList.getNumberOfPlayers(); i++)
 		{
 			try {

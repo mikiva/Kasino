@@ -33,6 +33,14 @@ public class PlayerList {
 		return nbrOfPlayers;
 	}
 	
+	public boolean isAllPlayerHandEmpty() {
+		for (int i = 0; i < playerList.length; i++) {
+			if(!playerList[i].getHand().isEmpty())
+				return false;
+		}
+		return true;
+	}
+	
 	public Player[] getPlayerList() {
 		return playerList;
 	}
