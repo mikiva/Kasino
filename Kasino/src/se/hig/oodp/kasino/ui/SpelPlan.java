@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -50,8 +51,9 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	JPanel leftPlayerPanel;
 	JPanel rightPlayerPanel;
 	JPanel userPlayerPanel;
-	JPanel oppositePlayerPanel;
+	JPanel centerPanelContainer;
 
+	JPanel oppositePlayerContainer;
 	JLabel[] labels;
 	ArrayList<Card> playerHand;
 	ArrayList<Image> imgs;
@@ -68,13 +70,15 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		this.deck = deck;
 		imgs = new ArrayList<Image>();
 		contentPane = new JPanel();
-		contentPane.setSize(1000, 800);
+		//contentPane.setSize(1000, 800);
 		contentPane.setLocation(0, 0);
 		//contentPane.setLayout(null);
-		add(contentPane);
-		setPreferredSize(new Dimension(1000, 800));
+
+		//setPreferredSize(new Dimension(1000, 800));
 		Container content = new JPanel(new GridLayout(3, 3, 0, 0));
-		setLayout(null);
+		setLayout(new BorderLayout());
+
+		add(contentPane, BorderLayout.CENTER);
 		for (int i = 0; i <12; i++){
 
 
@@ -90,27 +94,60 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 			//						contentPane.add(iconPane.add(label1), BorderLayout.LINE_START);
 			//						add(iconPane.add(label1), BorderLayout.WEST);
 		}
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridheight = 150;
 
 
-		rightPlayerPanel = new JPanel();
 
 		userPlayerPanel = new JPanel();
 		contentPane.setLayout(new BorderLayout());
-		oppositePlayerPanel = new JPanel();
-		leftPlayerPanel = new JPanel();
-		//	centerPanel = new JPanel();
 
-		//centerPanel.setLayout(null);
-		userPlayerPanel.setLayout(new GridBagLayout());
-		leftPlayerPanel.setLayout(new BoxLayout(leftPlayerPanel, BoxLayout.Y_AXIS));
-		rightPlayerPanel.setLayout(new BoxLayout(rightPlayerPanel, BoxLayout.Y_AXIS));
-		oppositePlayerPanel.setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
-		contentPane.setPreferredSize (new Dimension (1000, 800));
+
+
+		oppositePlayerContainer = new JPanel();
+		JPanel oppositePlayerPanel = new JPanel();
+		oppositePlayerContainer.setBounds(Window.WIDTH/2,0 , 500, 150);
+		oppositePlayerContainer.setPreferredSize(new Dimension(MainFrame_01.WIDTH, 150));
+		contentPane.add(oppositePlayerContainer, BorderLayout.NORTH);
+		oppositePlayerContainer.setLayout(new FlowLayout());
+		oppositePlayerContainer.add(oppositePlayerPanel);
+
+
+		JPanel leftPanelContainer = new JPanel();
+		leftPlayerPanel = new JPanel();
+		leftPlayerPanel.setPreferredSize(new Dimension(150, 500));
+		leftPanelContainer.add(leftPlayerPanel);
+
+		JPanel rightPanelContainer = new JPanel();
+		rightPlayerPanel = new JPanel();
+		rightPlayerPanel.setPreferredSize(new Dimension(150, 500));
+		rightPanelContainer.add(rightPlayerPanel);
+
+
+		centerPanel = new JPanel();
+		centerPanelContainer = new JPanel();
+		centerPanel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+		//centerPanelContainer.setLayout(new FlowLayout());
+		centerPanel.setPreferredSize(new Dimension(500,500));
+		centerPanelContainer.add(centerPanel);
+		//userPlayerPanel.setLayout(new GridLayout(1, 4));
+
 		
+		JPanel userPanelContainer = new JPanel();
+		//userPanelContainer.setBounds(MainFrame_01.WIDTH, 0, 500, 150);
+		userPlayerPanel = new JPanel();
+		userPlayerPanel.setPreferredSize(new Dimension(500, 150));
+		contentPane.add(userPanelContainer, BorderLayout.SOUTH);
+		userPlayerPanel.addMouseListener(this);
+		userPanelContainer.add(userPlayerPanel);
+		//leftPlayerPanel.setLayout(new BoxLayout(leftPlayerPanel, BoxLayout.Y_AXIS));
+		rightPlayerPanel.setLayout(new BoxLayout(rightPlayerPanel, BoxLayout.Y_AXIS));
+
+		//contentPane.setPreferredSize (new Dimension (1000, 800));
+
 		//add(contentPane);
 
-//gbc.weighty = 150;
+		//gbc.weighty = 150;
 
 		//centerPanel.setBounds(0, 0, 10, 0);
 		//contentPane.add(centerPanel, BorderLayout.CENTER);
@@ -119,27 +156,24 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		//centerPanel.addMouseListener(this);
 
+		contentPane.add(centerPanelContainer, BorderLayout.CENTER);
 
-		//leftPlayerPanel.setSize(150, 450);
-		contentPane.add(leftPlayerPanel, BorderLayout.WEST);
+		contentPane.add(leftPanelContainer, BorderLayout.WEST);
 		leftPlayerPanel.addMouseListener(this);
 
 		//leftPlayerPanel.setBounds(0,111, 150, 800);
 
 		//rightPlayerPanel.setBounds(20, 0, 10, 0);
-		contentPane.add(rightPlayerPanel, BorderLayout.EAST);
+		contentPane.add(rightPanelContainer, BorderLayout.EAST);
 		rightPlayerPanel.addMouseListener(this);
 
 
-		userPlayerPanel.setBounds(30, 0, 10, 0);
-		contentPane.add(userPlayerPanel, BorderLayout.SOUTH);
-		userPlayerPanel.addMouseListener(this);
+		//userPlayerPanel.setBounds(30, 0, 10, 0);
 
-		
-		
-		oppositePlayerPanel.setSize(450, 150);
-		contentPane.add(oppositePlayerPanel, BorderLayout.NORTH);
-		oppositePlayerPanel.addMouseListener(this);
+
+
+		//oppositePlayerPanel.setBounds(120, 0, 234, 122);
+
 
 
 
@@ -189,15 +223,15 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 
-		//		for (int i = 0; i <4; i++){
-		//
-		//			img = deck.getImage(i+3);
-		//			JLabel label1 = new JLabel(new ImageIcon(img));
-		//			label1.addMouseListener(this);
-		//			label1.addMouseMotionListener(this);
-		//			centerPanel.add(label1, BorderLayout.CENTER);	
-		//
-		//		}
+		for (int i = 0; i <10; i++){
+
+			img = deck.getImage(i+3);
+			JLabel label1 = new JLabel(new ImageIcon(img));
+			label1.addMouseListener(this);
+			label1.addMouseMotionListener(this);
+			centerPanel.add(label1);	
+
+		}
 
 
 		System.out.println("hejsan");
@@ -335,10 +369,10 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		if (jc instanceof JLabel)
 			jc.setVisible(false);
 
-		
+
 		e.getSource();
 
-repaint();
+		repaint();
 
 		//	System.out.println((e.getSource().toString()));
 
@@ -406,12 +440,6 @@ repaint();
 		// TODO Auto-generated method stub
 
 	}
-
-
-
-
-
-
 }
 
 

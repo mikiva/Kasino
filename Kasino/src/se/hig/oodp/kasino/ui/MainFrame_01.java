@@ -80,7 +80,7 @@ public class MainFrame_01 extends JFrame {
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize (new Dimension (1000, 800));
+		setPreferredSize (new Dimension (1000, 900));
 
 		this.draw = draw;
 		this.spelPlan = spelplan;
