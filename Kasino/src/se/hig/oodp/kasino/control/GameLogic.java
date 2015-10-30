@@ -1,7 +1,9 @@
 package se.hig.oodp.kasino.control;
 
-import java.awt.List;
+
+import java.util.List;
 import java.io.IOException;
+
 
 
 
@@ -20,6 +22,8 @@ public class GameLogic {
 	private Table table;
 	private PlayerList playerList;
 	private Scoreboard scoreboard;
+	
+	private Card[] cArr;
 
 	public GameLogic(GameRules rules, Dealer dealer, SpelPlan plan){
 
@@ -27,6 +31,7 @@ public class GameLogic {
 		this.rules = rules;
 		this.dealer = dealer;
 		this.spelPlan = plan;
+	
 
 		playerList = new PlayerList(rules.getNbrOfPlayerUser(), rules.getNbrOfPlayerAI());
 	}
@@ -39,24 +44,60 @@ public class GameLogic {
 		this.table = table;
 	}
 
-	public void setScoreboard(Scoreboard scoreboard) {
+	public void setScore(Scoreboard scoreboard) {
 		this.scoreboard = scoreboard;
 	}
 
-	public void cardTaken(Card[] onTable, Card playerCard, int id) {
-		if(rules.isLegal(onTable, playerCard)) {
+	public boolean cardTaken(List<Integer> onTable, int playerCard, int id) {
+		
+		cArr = new Card[onTable.size()];
+		for (int i = 0; i < cArr.length; i++) {
+			cArr[i] = table.getCards().get(onTable.get(i));
+			System.out.println(cArr[0]);
+		}
+		Card c = playerList.getPlayer(id).getHand().get(playerCard);
+		
+		
+		if(rules.isLegal(cArr, c)) {
 			try {
+				System.out.println("jajamän!");
 				scoreboard.incrementScore(id);
+				return true;
 			}
 			catch (ArrayIndexOutOfBoundsException e) {
 				System.out.println(e + " Något har gått fel med spelar-id och scoreboard-id.");
 			}
+			
+			playerList.getPlayer(0).removeFromHand(playerCard);
+			
+			
+			
+			
+			
+			
+			}
+		else if (!rules.isLegal(cArr, c))
+		{
+			System.out.println("nope!");
+			
 
 		}
+		return false;
 	}
-	public void cardPlaced(Card c) {
-		if(!table.isCardOnTable(c)) 
-			table.setCard(c);
+	
+	
+	public Scoreboard getScore(){
+		
+		return scoreboard;
+		
+	}
+	
+	public void cardPlaced(int i) {
+		if(!table.isCardOnTable(table.getCards().get(i))) 
+		{	table.setCard(playerList.getPlayer(0).getHand().get(i));
+		playerList.getPlayer(0).removeFromHand(i);
+		}
+		
 	}
 
 	public String gameOver() {
@@ -78,12 +119,17 @@ public class GameLogic {
 			}
 		}
 		dealer.resetDeck();
-		dealer.setPlayerList(playerList.getPlayerList());
+		dealer.setPlayerList(playerList);
 		dealer.dealToPlayers();
+		dealer.dealToTable();
+		
+		spelPlan.cardsOnTable(playerList);
+		
+	
 		
 
-		spelPlan.cardsOnTable(playerList.getPlayerList());
+		
 		spelPlan.repaint();
-		//spelPlan.repaint();
+		
 	}
 }

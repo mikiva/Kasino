@@ -21,7 +21,7 @@ public class Deck {
 				deck.add(new Card(n, s[i], deck.size()));
 		}
 
-
+		//print();
 
 	}
 
@@ -38,22 +38,22 @@ public class Deck {
 		Collections.shuffle(deck);
 
 	}
-	
+
 	public Image getImage(int id){
-		
-		
+
+
 		return deck.get(id).getImage();
-		
+
 	}
-	
-	
+
+
 	public List<Card> getDeck() {
 		return deck;
 	}
-	
+
 	public Card drawCard(){
-		
-		
+
+
 		Card drawn = deck.get(0); //Sätter en variabel som returnerar ett kort
 		deck.remove(0);//Tar bort det översta kortet i leken
 		return drawn;		//Returnerar kortet

@@ -22,15 +22,24 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.plaf.BorderUIResource;
 import javax.swing.plaf.basic.BasicTabbedPaneUI.MouseHandler;
 
+import se.hig.oodp.kasino.control.GameLogic;
 import se.hig.oodp.kasino.control.Player;
+import se.hig.oodp.kasino.control.PlayerList;
+import se.hig.oodp.kasino.control.Scoreboard;
 import se.hig.oodp.kasino_card_deck.Card;
 import se.hig.oodp.kasino_card_deck.Deck;
+import se.hig.oodp.kasino_card_deck.Table;
 
 import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 public class SpelPlan extends JPanel implements MouseListener, MouseMotionListener{
 
@@ -51,6 +60,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	JPanel leftPlayerPanel;
 	JPanel rightPlayerPanel;
 	JPanel userPlayerPanel;
+	private JPanel userPlayerPanel_1;
 	JPanel centerPanelContainer;
 	JPanel oppositePlayerPanel;
 	JPanel leftPanelContainer;
@@ -61,14 +71,29 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 	GridBagConstraints gbc;
 	ArrayList<Card> playerHand;
 	ArrayList<Image> imgs;
-
-
+	ArrayList<Card> markedCards;
+	ArrayList<JLabel> cardLabels;
+	PlayerList playerList;
+	ArrayList<JLabel> tableCards;
+	ArrayList<Integer> marked;
+	int picked = -1;
 	int x_offset;
 	int y_offset;
-
+	Table table;
 	JPanel contentPane;
+	GameLogic logic;
+
+	JMenuBar menuBar;
+	JMenuItem menuItem;
+	private JLabel lblNewLabel;
 	public SpelPlan(Deck deck) {
 
+
+		cardLabels = new ArrayList<JLabel>();
+
+		tableCards = new ArrayList<JLabel>();
+
+		marked = new ArrayList<Integer>();
 		iconPane = new ArrayList<JPanel>();
 		labels = new JLabel[4];
 		this.deck = deck;
@@ -77,27 +102,27 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		//contentPane.setSize(1000, 800);
 		contentPane.setLocation(0, 0);
 		//contentPane.setLayout(null);
-
+		markedCards = new ArrayList<Card>();
 		//setPreferredSize(new Dimension(1000, 800));
 		Container content = new JPanel(new GridLayout(3, 3, 0, 0));
 		setLayout(new BorderLayout());
 
 		add(contentPane, BorderLayout.CENTER);
-		for (int i = 0; i <12; i++){
-
-
-			img = deck.getImage(i);
-			//iconPane = new JPanel(new BoxLayout(arg0, arg1));
-			label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			//centerPanel.add(iconPane.add(label1));	
-
-
-			//						contentPane.add(iconPane.add(label1));
-			//						contentPane.add(iconPane.add(label1), BorderLayout.LINE_START);
-			//						add(iconPane.add(label1), BorderLayout.WEST);
-		}
+		//		for (int i = 0; i <12; i++){
+		//
+		//
+		//			img = deck.getImage(i);
+		//			//iconPane = new JPanel(new BoxLayout(arg0, arg1));
+		//			label1 = new JLabel(new ImageIcon(img));
+		//			label1.addMouseListener(this);
+		//			label1.addMouseMotionListener(this);
+		//			//centerPanel.add(iconPane.add(label1));	
+		//
+		//
+		//			//						contentPane.add(iconPane.add(label1));
+		//			//						contentPane.add(iconPane.add(label1), BorderLayout.LINE_START);
+		//			//						add(iconPane.add(label1), BorderLayout.WEST);
+		//		}
 		gbc = new GridBagConstraints();
 		gbc.gridheight = 150;
 
@@ -145,7 +170,7 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 		userPlayerPanel.addMouseListener(this);
 		userPanelContainer.add(userPlayerPanel);
 		//leftPlayerPanel.setLayout(new BoxLayout(leftPlayerPanel, BoxLayout.Y_AXIS));
-		rightPlayerPanel.setLayout(new BoxLayout(rightPlayerPanel, BoxLayout.Y_AXIS));
+		//	rightPlayerPanel.setLayout(new BoxLayout(rightPlayerPanel, BoxLayout.Y_AXIS));
 
 		//contentPane.setPreferredSize (new Dimension (1000, 800));
 
@@ -169,6 +194,10 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		//rightPlayerPanel.setBounds(20, 0, 10, 0);
 		contentPane.add(rightPanelContainer, BorderLayout.EAST);
+
+		//	lblNewLabel = new JLabel("points");
+
+		//rightPanelContainer.add(lblNewLabel);
 		rightPlayerPanel.addMouseListener(this);
 
 
@@ -178,6 +207,13 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		//oppositePlayerPanel.setBounds(120, 0, 234, 122);
 
+
+		for (int i = 0; i<4; i++)
+		{cardLabels.add(new JLabel());
+		userPlayerPanel.add(cardLabels.get(i), gbc);
+		}
+
+
 		setVisible(true);
 		repaint();
 
@@ -186,74 +222,36 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 	}
 
+	public void setLogic(GameLogic logic)
+	{
+		this.logic = logic;
+	}
 
-	//	public void cardsOnTable(Player[] players){
-	//
-	//		xLoc = 100;
-	//		yLoc = 100;
-	//
-	//		try {
-	//			for (int i = 0; i < players.length; i++){
-	//
-	//				for (int j = 0; j < labels.length; j++)
-	//				{	
-	//
-	//
-	//					imgs.add(players[i].getHand().get(j).getImage());
-	//					labels[j] = new JLabel(new ImageIcon(img));
-	//					iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
-	//					contentPane.add(iconPane.get(j), BorderLayout.EAST);
-	//					labels[i].setLocation(i+ 20, 30);
-	//					contentPane.add(labels[i]);
-	//					add(labels[i]);
-	//					img = deck.getImage(i);
-	//
-	//					img = players[i].getHand().get(j).getImage();
-	//					labels[j] = new JLabel(new ImageIcon(img));
-	//					//iconPane.add(new JPanel(new BoxLayout(labels[j], BoxLayout.X_AXIS)));
-	//					//contentPane.add(iconPane.get(j), BorderLayout.EAST);
-	//					//	labels[i].setLocation(i+ 20, 30);
-	//					//contentPane.add(labels[i]);
-	//					//add(labels[i]);
-	//					//img = deck.getImage(i);
-	//					repaint();
-	//
-	//
-	//
-	//					xLoc += 10;
-	//
-	//				}
-	//			}
-	//		} catch (IndexOutOfBoundsException e) {
-	//			// TODO Auto-generated catch block
-	//			System.out.println("Korten slut!");
-	//
-	//			e.printStackTrace();
-	//		}
+	public void setTable(Table table){
+
+		this.table = table;
+
+	}
+	public void setMenuBar(JMenuBar menu)
+	{this.menuBar = menu;}
 
 
+	public void cardsOnTable(PlayerList playerList){
 
-	//img = players[0].getHand().get(0).getImage();
-	//repaint();
-
-
-
-	//	paint(graphic);
-
-	public void cardsOnTable(Player[] players){
-
-
+		this.playerList = playerList;
 
 
 		for (int i = 0; i <4; i++){
 
 
-			img = players[0].getHand().get(i).getImage();
+			img = playerList.getPlayer(0).getHand().get(i).getImage();
 			//img = deck.getImage(i);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			userPlayerPanel.add(label1, gbc);	
+			cardLabels.get(i).setIcon(new ImageIcon(img));
+			//cardLabels[i] = new JLabel(new ImageIcon());
+			cardLabels.get(i).addMouseListener(this);
+			cardLabels.get(i).addMouseMotionListener(this);
+			//	userPlayerPanel.add(cardLabels[i], gbc);	
+			userPlayerPanel.repaint();
 
 		}
 
@@ -262,48 +260,55 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 		for (int i = 0; i <4; i++){
 
-			img = players[1].getHand().get(i).getImage();
+			//img = deck.getImage(i+3);
+
+
+			img = table.getCards().get(i).getImage();
+
+			tableCards.add(new JLabel(new ImageIcon(img)));
+			tableCards.get(i).addMouseListener(this);
+			tableCards.get(i).addMouseMotionListener(this);
+			centerPanel.add(tableCards.get(i));	
+
+		}
+
+
+
+		for (int i = 0; i <4; i++){
+
+			img = playerList.getPlayer(1).getHand().get(i).getImage();
 			//img = deck.getImage(i);
 			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
+			//			label1.addMouseListener(this);
+			//			label1.addMouseMotionListener(this);
 			leftPlayerPanel.add(label1, gbc);	
 
 		}
 		for (int i = 0; i <4; i++){
 
-			img = players[2].getHand().get(i).getImage();
+			img = playerList.getPlayer(2).getHand().get(i).getImage();
 			//img = deck.getImage(i);
 
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			oppositePlayerPanel.add(label1, gbc);	
+			label1 = new JLabel(new ImageIcon(img));
+			//			label1.addMouseListener(this);
+			//			label1.addMouseMotionListener(this);
+			oppositePlayerPanel.add(label1, gbc);
+			//label1.
 
 		}
 		for (int i = 0; i <4; i++){
 
-			img = players[3].getHand().get(i).getImage();
+			img = playerList.getPlayer(3).getHand().get(i).getImage();
 
 			//img = deck.getImage(i+2);
 			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
+			//	label1.addMouseListener(this);
+			//label1.addMouseMotionListener(this);
 			rightPlayerPanel.add(label1, gbc);	
 
 		}
 
 
-
-		for (int i = 0; i <10; i++){
-
-			img = deck.getImage(i+3);
-			JLabel label1 = new JLabel(new ImageIcon(img));
-			label1.addMouseListener(this);
-			label1.addMouseMotionListener(this);
-			centerPanel.add(label1);	
-
-		}
 
 
 		System.out.println("hejsan");
@@ -313,40 +318,6 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 	}
 
-
-
-
-
-
-
-
-
-	//		@Override
-	//		public void paintComponent(Graphics g) {
-	//			super.paintComponent(g);
-	//			Graphics2D g2 = (Graphics2D) g;
-	//
-	//			for (int i = 0; i < imgs.size(); i++)
-	//			{g2.drawImage(imgs.get(i), (i *100), 100, null);}
-	//			//g2.drawLine(100, 100, 300, 300);
-	//
-	//
-	//		}
-
-
-
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-
-		g2.drawImage(img, xLoc, 100, null);
-
-
-		g2.drawLine(100, 100, 300, 300);
-
-
-	}
 
 
 
@@ -385,8 +356,80 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 
-		if (jc instanceof JLabel)
-			jc.setVisible(false);
+		if(jc instanceof JLabel)
+		{
+
+			//((JLabel) jc).setIcon(null);
+
+			for (int i = 0; i<cardLabels.size(); i++){
+				if(cardLabels.get(i).equals(jc)){
+
+
+
+
+					System.out.println(playerList.getPlayer(0).getHand().get(i));
+
+					System.out.println(i);
+					//cardLabels.remove(i);
+
+					//playerList.getPlayer(0).ta
+
+					setPickedPlayerCard(i);
+
+
+				}
+			}
+
+			System.out.println(picked);
+
+
+			for (int i = 0; i < tableCards.size(); i++) {
+				if(tableCards.get(i).equals(jc)){
+					if(marked.contains(i) != true)
+					{
+						marked.add(i);
+						System.out.println(table.getCards().get(i));
+						//System.out.println(i);
+						setPickedTableCards(marked);
+						System.out.println(marked);
+					}
+
+					else
+					{
+						for (int j = 0; j < marked.size(); j++) 
+							if(i == marked.get(j))
+								marked.remove(j);
+
+
+						System.out.println("avmarkerat");
+						setPickedTableCards(marked);
+					}
+
+
+
+
+
+
+
+				}
+
+
+
+
+			}
+
+
+			//	System.out.println(cardLabels[2].equals(jc));
+		}
+
+
+
+		//	markedCards.add(jc);
+
+
+
+
+
 
 
 		e.getSource();
@@ -397,6 +440,51 @@ public class SpelPlan extends JPanel implements MouseListener, MouseMotionListen
 
 
 	}
+
+	public void setPickedPlayerCard(int i){
+		picked = i;
+	}
+	public int getPlayerCard(){
+		System.out.println("Picked player card "+ playerList.getPlayer(0).getHand().get(picked));
+		return picked;
+	}
+
+	public void setPickedTableCards(ArrayList<Integer> cards){
+
+		this.marked = cards;
+	}
+	public ArrayList<Integer> getTableCards(){
+		System.out.println("Picked from table: " + table.getCards().get(marked.get(0)));
+		return marked;
+	}
+
+	public void upDatePlan(ArrayList<Integer> k, int j)
+	{
+		for (int i = 0; i < tableCards.size(); i++) {
+			for (int l = 0; l < k.size(); l++) {
+
+
+				if (i == k.get(l)){
+					tableCards.get(i).setIcon(null);
+				}
+			}
+		}
+
+		cardLabels.get(j).setIcon(null);
+
+		setPickedPlayerCard(0);
+		marked.clear();
+		setPickedTableCards(marked);
+
+	}
+
+	public void putCard(int i){
+
+		tableCards.add(new JLabel(new ImageIcon(playerList.getPlayer(0).getHand().get(i).getImage())));
+		cardsOnTable(playerList);
+		repaint();
+	}
+
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub

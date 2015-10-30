@@ -13,6 +13,7 @@ public interface Player {
 	public void placeCard(Card card);
 	public void takeCard(Card[] cardArr, Card card);
 	public void addToHand(Card card);
+	public void removeFromHand(int i);
 	public void clearHand();
 	public List<Card> getHand();
 	

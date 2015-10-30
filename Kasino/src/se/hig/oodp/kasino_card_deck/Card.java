@@ -21,11 +21,11 @@ public class Card {
 		this.color = color;
 		this.id = id;
 	
-		path = "\"CARDS/material/"+(id)+".png\"";
+		path = "\"CARDS/material/"+(id+1)+".png\"";
 		
-	//	System.out.println(path);
+		System.out.println(path);
 
-		f = new File("CARDS/material/"+(id)+".png");
+		f = new File("CARDS/material/"+(id+1)+".png");
 		img = ImageIO.read(f); 
 	}
 	

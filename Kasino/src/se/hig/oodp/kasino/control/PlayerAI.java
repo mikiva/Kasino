@@ -23,7 +23,7 @@ public class PlayerAI implements Player {
 	@Override
 	public void placeCard(Card card) {
 		
-		logic.cardPlaced(card);
+		//logic.cardPlaced(card);
 		
 	}
 
@@ -53,6 +53,12 @@ public class PlayerAI implements Player {
 	public List<Card> getHand() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void removeFromHand(int i) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

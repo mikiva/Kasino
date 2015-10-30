@@ -27,5 +27,10 @@ public class Table {
 		}
 		return false;
 	}
+	
+	public List<Card> getCards(){
+		
+		return onTable;
+	}
 
 }

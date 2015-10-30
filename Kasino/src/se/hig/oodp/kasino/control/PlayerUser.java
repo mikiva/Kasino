@@ -25,14 +25,23 @@ public class PlayerUser implements Player{
 
 	@Override
 	public void placeCard(Card card) {
-		logic.cardPlaced(card);
+		//logic.cardPlaced(card);
 		
 	}
 
 	@Override
 	public void takeCard(Card[] cardArr, Card card) {
-		logic.cardTaken(cardArr, card, playerID);
+		//logic.cardTaken(cardArr, card, playerID);
+		
 	}
+	
+	
+	public void removeFromHand(int i){
+		
+		cards.remove(i);
+		
+	}
+	
 
 	@Override
 	public void addToHand(Card card) {
@@ -46,6 +55,8 @@ public class PlayerUser implements Player{
 	public void clearHand(){
 		cards.clear();	
 	}
+
+
 	
 
 }

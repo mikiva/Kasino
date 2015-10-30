@@ -36,11 +36,15 @@ public class GameRules {
 		for(int i = 0; i < cardArr.length; i++) {
 			total += cardArr[i].getValue();
 		}
+		
+		if(c.getValue() == total)
+			return true;
 
 		if(total % c.getValue() == 0)
 			return true;
 
-		return false;
+		else
+			return false;
 	}
 	
 	public boolean isGameOver(Dealer dealer, PlayerList playerList) {
