@@ -27,6 +27,7 @@ import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.Position;
 
+
 import control_TEST.GameLogic;
 import control_TEST.GameRules;
 import control_TEST.PlayerList;
@@ -56,7 +57,7 @@ public class Frame extends JFrame {
 
 	public Frame(GameLogic logic, GameRules rules, PlayerList playerList, Table table) {
 		super("KASINO");
-		this.appLogic = new ApplicationLogic();
+		appLogic = new ApplicationLogic();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(frameWidth, frameHeight));
@@ -92,9 +93,9 @@ public class Frame extends JFrame {
 
 		TablePanel tablePanel = new TablePanel(table, appLogic, rules.getCardsOnTable());
 		MenuBar menuBar = new MenuBar(logic, playerPanel, tablePanel);
+		menuBar.setApplicationLogic(appLogic);
 
 
-		//tablePanel.setBackground(Color.BLUE);
 
 		mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 		mainPanel.add(westPanel, BorderLayout.WEST);

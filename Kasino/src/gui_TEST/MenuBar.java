@@ -13,8 +13,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import control_TEST.GameLogic;
+import control_TEST.Player;
+import data_TEST.Card;
 
 public class MenuBar extends JMenuBar {
+
+	private ApplicationLogic appLogic;
+	private TurnCounter tCounter;
 
 	private JButton btnNewGame;
 	private JButton btnTakeCard;
@@ -22,6 +27,7 @@ public class MenuBar extends JMenuBar {
 
 	public MenuBar(GameLogic logic, PlayerPanel[] playerPanel, TablePanel tablePanel) {
 		super();
+		tCounter = new TurnCounter(playerPanel);
 
 		btnNewGame = new JButton("New Game");
 		btnTakeCard = new JButton("Take Card(s)");
@@ -32,6 +38,8 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logic.newGame();
+				appLogic.clearAll();
+				tablePanel.clearTable();
 				tablePanel.addStartingCards();
 				playerPanel[0].setThisPlayersTurn(true);
 
@@ -42,12 +50,33 @@ public class MenuBar extends JMenuBar {
 					else 
 						playerPanel[i].setFaceDownCards();
 				}
-
-				for (int j = 0; j < 4; j++) {
-
-				}
 			}
 
+		});
+
+		btnTakeCard.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Player currentPlayer = playerPanel[tCounter.getCurrentPlayersTurn()].getPlayer();
+
+				if(appLogic.getHandCardID() != null && !appLogic.getTableCardList().isEmpty()) {
+					if(currentPlayer.takeCard(appLogic.getTableCardList(), appLogic.getHandCardID(), currentPlayer.getPlayerId())) {
+						playerPanel[tCounter.getCurrentPlayersTurn()].removeCardFromHand(appLogic.getHandCardID());
+						for (int i = 0; i < appLogic.getTableCardList().size(); i++) {
+							tablePanel.removeCardFromTable(appLogic.getTableCardList().get(i));
+						}
+					}
+					else {
+						System.out.println("Det går inte att ta upp.");
+					}
+				}
+				appLogic.clearAll();
+				playerPanel[tCounter.getCurrentPlayersTurn()].setAllToSelectable();
+				tablePanel.setAllToSelectable();
+
+			}
 		});
 
 		btnPlaceCard.addActionListener(new ActionListener() {
@@ -55,16 +84,25 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
+				if(appLogic.getHandCardID() != null) {
+					playerPanel[tCounter.getCurrentPlayersTurn()].getPlayer().placeCard(appLogic.getHandCardID());
+					tablePanel.addCardToTable(appLogic.getHandCardID());
+					playerPanel[tCounter.getCurrentPlayersTurn()].removeCardFromHand(appLogic.getHandCardID());
+					appLogic.setHandCardID(null);
+				}
+				appLogic.clearAll();
 			}
+
 		});
-
-
-
 
 		add(btnNewGame);
 		add(btnTakeCard);
 		add(btnPlaceCard);
+	}
+
+	public void setApplicationLogic(ApplicationLogic appLogic) {
+		this.appLogic = appLogic;
 	}
 
 }

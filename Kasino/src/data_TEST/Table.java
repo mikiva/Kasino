@@ -19,8 +19,24 @@ public class Table {
 		onTable.remove(index);
 	}
 	
+	public void removeCardOnTable(int cardID) {
+		for (int i = 0; i < onTable.size(); i++) {
+			if(onTable.get(i).getId() == cardID) {
+				onTable.remove(i);
+			}
+		}
+	}
+	
 	public void clearTable() {
 		onTable.clear();
+	}
+	
+	public Card getCardOnTable(int cardID) {
+		for (int i = 0; i < onTable.size(); i++) {
+			if(onTable.get(i).getId() == cardID)
+				return onTable.get(i);
+		}
+		return onTable.get(0);
 	}
 
 	public boolean isCardOnTable(Card card) {

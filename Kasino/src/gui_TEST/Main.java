@@ -28,9 +28,12 @@ public class Main {
 		dealer.setPlayerList(playerList);
 		dealer.setTable(table);
 		
-		dealer.shuffleDeck();
-		dealer.dealToPlayers();
-		dealer.dealToTable();
+//		dealer.shuffleDeck();
+//		dealer.dealToPlayers();
+//		dealer.dealToTable();
+		
+		
+		
 		
 		Frame frame = new Frame(logic, rules, playerList, table);
 		frame.setVisible(true);

@@ -27,7 +27,6 @@ public class CardLabel extends JLabel {
 	private ImageList list;
 
 	private JPopupMenu menu;
-	private JMenuItem menuPlace;
 	private JMenuItem menuSelect;
 	private JMenuItem menuDeselect;
 
@@ -40,7 +39,6 @@ public class CardLabel extends JLabel {
 
 		menuSelect = new JMenuItem("Select");
 		menuDeselect = new JMenuItem("Deselect");
-		menuPlace = new JMenuItem("Place card");
 
 		menuDeselect.setVisible(false);
 
@@ -57,6 +55,7 @@ public class CardLabel extends JLabel {
 					else {
 						appLogic.setHandCardID(id);
 					}
+					//System.out.println("Du har markerat ett kort med ID: " + id);
 					menuSelect.setVisible(false);
 					menuDeselect.setVisible(true);
 				}
@@ -75,74 +74,20 @@ public class CardLabel extends JLabel {
 				else {
 					appLogic.removeHandCardID();
 				}
+				//System.out.println("Du avmarkerade ett kort med ID: " + id);
 				menuDeselect.setVisible(false);
 				menuSelect.setVisible(true);
 			}
 		});
 
-		menuPlace.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-		});
 
 		menu.add(menuSelect);
 		menu.add(menuDeselect);
-		menu.add(menuPlace);
-
-
-		addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				//				if(isClickable)
-				//				{
-				//					if(!isSelected && !SwingUtilities.isRightMouseButton(e)) {
-				//						if(isOnTable) {
-				//							appLogic.addTableCardID(id);
-				//						}
-				//						else {
-				//							appLogic.setHandCardID(id);
-				//						}
-				//						isSelected = true;
-				//					}
-				//
-				//					else if(isSelected && SwingUtilities.isRightMouseButton(e)) {
-				//						if(isOnTable) {
-				//							appLogic.removeTableCardID(id);
-				//						}
-				//						else {
-				//							appLogic.removeHandCardID();
-				//						}
-				//							
-				//						isSelected = false;
-				//					}
-				//				}
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-			}
-		});
+	}
+	
+	public void setSelectable(boolean b) {
+		menuSelect.setVisible(b);
+		menuDeselect.setVisible(!b);
 	}
 
 
@@ -152,13 +97,13 @@ public class CardLabel extends JLabel {
 
 	public void setOnTable(boolean isOnTable) {
 		this.isOnTable = isOnTable;
-
-		if(isOnTable)
-			menuPlace.setVisible(false);
 	}
 
 	public void setID(int id) {
 		this.id = id;
+		
+		menuDeselect.setVisible(false);
+		menuSelect.setVisible(true);
 	}
 
 	public int getID() {
@@ -173,7 +118,6 @@ public class CardLabel extends JLabel {
 		this.isClickable = isClickable;
 
 		if(!isClickable) {
-			menuPlace.setVisible(false);
 			menuSelect.setVisible(false);
 			menuDeselect.setVisible(false);
 		}

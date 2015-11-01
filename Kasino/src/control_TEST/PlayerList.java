@@ -24,6 +24,17 @@ public class PlayerList {
 		}
 	}
 	
+	public void setLogicToPlayers(GameLogic logic) {
+		for (int i = 0; i < playerList.length; i++) {
+			playerList[i].setLogic(logic);
+		}
+	}
+	
+	public void clearAllHands() {
+		for (int i = 0; i < playerList.length; i++) {
+			playerList[i].clearHand();
+		}
+	}
 	
 	public Player getPlayer(int index) {
 		return playerList[index];
@@ -41,8 +52,8 @@ public class PlayerList {
 		return true;
 	}
 	
-	public Player[] getPlayerList() {
-		return playerList;
-	}
+//	public Player[] getPlayerList() {
+//		return playerList;
+//	}
 
 }

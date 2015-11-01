@@ -10,10 +10,7 @@ public class GameRules {
 	private int cardsToDeal;
 	private int nbrOfPlayerUser;
 	private int nbrOfPlayerAI;
-	
-	private static final int MININUM_PLAYERS = 2;
-	private static final int MAXIMUM_PLAYERS = 4;
-	
+
 	public GameRules(int nbrOfPlayerUser, int nbrOfPlayerAI) {
 		this.nbrOfPlayerUser = nbrOfPlayerUser;
 		this.nbrOfPlayerAI = nbrOfPlayerAI;
@@ -21,20 +18,20 @@ public class GameRules {
 		cardsToDeal = 4;
 	}
 	
-	public boolean isLegal(Card[] cardArr, Card c) {
+	public boolean isLegal(Card[] cardsOnTable, Card cardOnHand) {
 
-		for (int i = 0; i < cardArr.length; i++) {
-			if(c.getValue() < cardArr[i].getValue())
+		for (int i = 0; i < cardsOnTable.length; i++) {
+			if(cardOnHand.getValue() < cardsOnTable[i].getValue())
 				return false;
 		}
 
 		int total = 0;
 
-		for(int i = 0; i < cardArr.length; i++) {
-			total += cardArr[i].getValue();
+		for(int i = 0; i < cardsOnTable.length; i++) {
+			total += cardsOnTable[i].getValue();
 		}
 
-		if(total % c.getValue() == 0)
+		if(total % cardOnHand.getValue() == 0)
 			return true;
 
 		return false;
@@ -46,13 +43,7 @@ public class GameRules {
 		return false;
 	}
 	
-	public boolean isEnoughPlayers(int nbrOfPlayers) {
-		if(nbrOfPlayers < MININUM_PLAYERS) 
-			return false;
-		if(nbrOfPlayers > MAXIMUM_PLAYERS)
-			return false;
-		return true;
-	}
+
 	
 	public int getCardsOnTable() {
 		return cardsOnTable;

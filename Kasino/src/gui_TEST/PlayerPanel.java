@@ -32,7 +32,7 @@ public class PlayerPanel extends JPanel {
 		cardLabel = new CardLabel[4];
 		this.appLogic = appLogic;
 
-		setThisPlayersTurn(false);
+		isThisPlayersTurn = false;
 
 		for (int i = 0; i < cardLabel.length; i++) {
 			try {
@@ -43,6 +43,12 @@ public class PlayerPanel extends JPanel {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void setAllToSelectable() {
+		for (int i = 0; i < cardLabel.length; i++) {
+			cardLabel[i].setSelectable(true);
+			}
 	}
 
 	public void setHandCards() {
@@ -55,15 +61,6 @@ public class PlayerPanel extends JPanel {
 
 	}
 
-//	public void setCardLabel(int id) {
-//		for (int i = 0; i < label.length; i++) {
-//			if(label[i].getIcon() == null) {
-//				label[i].setIcon(list.getImage(id));
-//				label[i].setID(id);
-//				break;
-//			}
-//		}
-//	}
 	public void emptyCardLabels() {
 		for (int i = 0; i < cardLabel.length; i++) {
 			if(cardLabel[i].getIcon() != null)
@@ -77,6 +74,14 @@ public class PlayerPanel extends JPanel {
 			cardLabel[i].setClickable(false);
 		}
 	}
+	
+	public void removeCardFromHand(int id) {
+		for (int i = 0; i < cardLabel.length; i++) {
+			if(cardLabel[i].getID() == id) {
+				cardLabel[i].setIcon(null);
+			}
+		}
+	}
 
 	public boolean isThisPlayersTurn() {
 		return isThisPlayersTurn;
@@ -86,7 +91,7 @@ public class PlayerPanel extends JPanel {
 		this.isThisPlayersTurn = isThisPlayersTurn;
 	}
 
-	public JLabel getCardLabel(int index) {
+	public CardLabel getCardLabel(int index) {
 		return cardLabel[index];
 	}
 

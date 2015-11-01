@@ -32,13 +32,13 @@ public class ImageList {
 	List<ImageIcon> list;
 	ImageIcon faceDown;
 	
-	private final static String PATH = "H:/git/Kasino/Kasino/Kasino/CARDS/material3/";
+	private final static String PATH = "H:/workspace/Kasino_TEST/CARDS/material3/";
 
 	public ImageList() {
 
 		list = new ArrayList<ImageIcon>();
 		folder = new File(PATH);	
-		faceDown = new ImageIcon("H:/git/Kasino/Kasino/Kasino/CARDS/face_down.png");
+		faceDown = new ImageIcon("H:/workspace/Kasino_TEST/CARDS/face_down.png");
 		
 		for (int i = 0; i < folder.list().length; i++) {
 			try {

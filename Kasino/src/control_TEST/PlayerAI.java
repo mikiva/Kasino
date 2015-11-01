@@ -21,9 +21,8 @@ public class PlayerAI implements Player {
 	}
 
 	@Override
-	public void placeCard(Card card) {
-		
-		logic.cardPlaced(card);
+	public void placeCard(int cardID) {
+	
 		
 	}
 
@@ -47,7 +46,8 @@ public class PlayerAI implements Player {
 	}
 
 	@Override
-	public void takeCard(List<Integer> cardIDList, int cardID, int index) {
+	public boolean takeCard(List<Integer> cardIDList, int cardID, int index) {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
@@ -56,6 +56,18 @@ public class PlayerAI implements Player {
 	public void removeFromHand(int index) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setLogic(GameLogic logic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Card getCardOnHand(int cardID) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

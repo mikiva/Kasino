@@ -28,7 +28,9 @@ public class GameLogic {
 		this.rules = rules;
 		this.dealer = dealer;
 
+	
 		this.playerList = playerList;
+		this.playerList.setLogicToPlayers(this);
 		scoreboard = new Scoreboard(rules.getNbrOfPlayerAI() + rules.getNbrOfPlayerUser());
 	}
 
@@ -44,26 +46,25 @@ public class GameLogic {
 		this.scoreboard = scoreboard;
 	}
 
-	public boolean cardTaken(List<Integer> onTable, int playerCard, int id) {
+	public boolean cardTaken(List<Integer> onTable, int cardID, int playerID) {
 		
-		Card[] cArr = new Card[onTable.size()];
-		for (int i = 0; i < cArr.length; i++) {
-			cArr[i] = table.getTableCards().get(onTable.get(i));
-			System.out.println(cArr[0]);
+		Card[] cardArr = new Card[onTable.size()];
+		for (int i = 0; i < cardArr.length; i++) {
+			cardArr[i] = table.getCardOnTable(onTable.get(i));
 		}
-		Card c = playerList.getPlayer(id).getHand().get(playerCard);
+		Card c = playerList.getPlayer(playerID).getCardOnHand(cardID);
 		
-		if(rules.isLegal(cArr, c)) {
+		if(rules.isLegal(cardArr, c)) {
 			try {
-				for (int i = 0; i < cArr.length; i++) {
-					scoreboard.incrementScore(id);
+				for (int i = 0; i < cardArr.length; i++) {
+					scoreboard.incrementScore(playerID);
 				}	
 			}
 			catch (ArrayIndexOutOfBoundsException e) {
 				System.out.println(e + " Något har gått fel med spelar-id och scoreboard-id.");
 			}
-			for (int i = 0; i < cArr.length; i++) {
-				table.removeCard(i);
+			for (int i = 0; i < cardArr.length; i++) {
+				table.removeCardOnTable(cardArr[i].getId());
 			}
 			return true;
 		}
@@ -74,28 +75,21 @@ public class GameLogic {
 		if(!table.isCardOnTable(c)) 
 			table.addCardToTable(c);
 	}
-
-	public String gameOver() {
-		if(rules.isGameOver(dealer, playerList)) {
-			return scoreboard.getPlayerScores();
-		}
-		return "";
-	}
+//
+//	public String gameOver() {
+//		if(rules.isGameOver(dealer, playerList)) {
+//			return scoreboard.getPlayerScores();
+//		}
+//		return "";
+//	}
 
 	public void newGame() { //Återställer kortleken och rensar spelarnas händer
 
-		for (int i = 0; i < playerList.getNumberOfPlayers(); i++)
-		{
-			try {
-				playerList.getPlayer(i).clearHand();
-			}
-			catch (ArrayIndexOutOfBoundsException e) {
-				System.out.println(e);
-			}
-		}
+		playerList.clearAllHands();
 		dealer.resetDeck();
 		dealer.shuffleDeck();
 		dealer.dealToPlayers();
-
+		table.clearTable();
+		dealer.dealToTable();
 	}
 }

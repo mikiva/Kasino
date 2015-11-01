@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.TabExpander;
+
 import control_TEST.GameLogic;
 import data_TEST.Card;
 
@@ -18,30 +20,35 @@ public class ApplicationLogic {
 		handCardID = null;
 	}
 	
-	public void placeCard(int id, PlayerPanel playerPanel, TablePanel tablePanel) {
-		
+	public Integer getHandCardID() {
+		return handCardID;
+	}
+	
+	public List<Integer> getTableCardList() {
+		return tableCardList;
 	}
 	
 	public void addTableCardID(int cardID) {
 		tableCardList.add(cardID);
-		System.out.println("Kortet du valt har ID: " + cardID);
 	}
 	
 	public void removeTableCardID(int cardID) {
 		if(tableCardList.contains(cardID)) {
 			tableCardList.remove(tableCardList.indexOf(cardID));
-			System.out.println("Du tog bort kortet med ID: " + cardID);
 		}
 	}
 	
-	public void setHandCardID(int handCardID) {
+	public void setHandCardID(Integer handCardID) {
 		this.handCardID = handCardID;
-		System.out.println("Kortet du valt har ID: " + handCardID);
 	}
 	
 	public void removeHandCardID() {
 		handCardID = null;
-		System.out.println("Du tog bort kortet.");
+	}
+	
+	public void clearAll() {
+		tableCardList.clear();
+		handCardID = null;
 	}
 
 }

@@ -39,7 +39,7 @@ public class Dealer implements DealerInterface{
 
 			for (int i = 0; i < playerList.getNumberOfPlayers(); i++) {
 				for (int n = 0; n < rules.getCardsToDeal() ; n++) 
-					playerList.getPlayer(i).addToHand(deck.drawCard());
+					playerList.getPlayer(n).addToHand(deck.drawCard());
 			}
 		}
 		else System.out.println("Deck empty");

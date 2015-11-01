@@ -1,6 +1,8 @@
 package gui_TEST;
 
 
+import java.awt.Component;
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class TablePanel extends JPanel {
 	private ImageList list;
 	private Table table;
 	private ApplicationLogic appLogic;
-	private List<CardLabel> cardLabel;
+	private CardLabel[] label;
 	private int startingCards;
 
 	public TablePanel(Table table, ApplicationLogic appLogic, int startingCards) {
@@ -24,28 +26,65 @@ public class TablePanel extends JPanel {
 		this.table = table;
 		this.appLogic = appLogic;
 		this.startingCards = startingCards;
-		cardLabel = new ArrayList<CardLabel>();
+		label = new CardLabel[52];
+
+		for (int i = 0; i < label.length; i++) {
+			label[i] = new CardLabel(list, appLogic);
+			add(label[i]);
+		}
+
 	}
-	
+
 	public void addCardToTable(int id) {
-		cardLabel.add(new CardLabel(list, appLogic));
-		cardLabel.get(cardLabel.size() - 1).setIcon(list.getImage(id));
-		cardLabel.get(cardLabel.size() - 1).setID(id);
-		cardLabel.get(cardLabel.size() - 1).setOnTable(true);
-		add(cardLabel.get(cardLabel.size() - 1));
+		for (int i = 0; i < label.length; i++) {
+			if(label[i].getID() != id) {
+				label[findFirstFreeSpace()].setID(id);
+				label[findFirstFreeSpace()].setOnTable(true);
+				label[findFirstFreeSpace()].setIcon(list.getImage(id));
+				break;
+			}
+		}
+
 	}
-	
+
 	public void addStartingCards() {
+		CardLabel l;
+
 		for (int i = 0; i < startingCards; i++) {
-			addCardToTable(table.getTableCards().get(i).getId());
+			l = label[findFirstFreeSpace()];
+			l.setID(table.getTableCards().get(i).getId());
+			l.setOnTable(true);
+			l.setIcon(list.getImage(table.getTableCards().get(i).getId()));
+		}
+	}
+
+	public void removeCardFromTable(int id) {
+		for (int i = 0; i < label.length; i++) {
+			if(label[i].getID() == id)
+				label[i].setIcon(null);
+		}
+
+	}
+
+	public void clearTable() {
+		for (int i = 0; i < label.length; i++) {
+			label[i].setIcon(null);
 		}
 	}
 	
-	public void removeCardFromTable(int id) {
-		cardLabel.remove(list.getImage(id));
+	public void setAllToSelectable() {
+		for (int i = 0; i < label.length; i++) {
+			label[i].setSelectable(true);
+		}
 	}
 
-
+	private int findFirstFreeSpace() {
+		for (int i = 0; i < label.length; i++) {
+			if(label[i].getIcon() == null)
+				return i;
+		}
+		return 0;
+	}
 
 
 }

@@ -8,14 +8,14 @@ import data_TEST.Card;
 public class PlayerUser implements Player{
 
 
-	private List<Card> cards;
+	private List<Card> hand;
 	private int playerID;
 	private GameLogic logic;
 
 	public PlayerUser(int playerID){
-
+		this.logic = logic;
 		this.playerID = playerID;
-		cards = new ArrayList<Card>();
+		hand = new ArrayList<Card>();
 	}
 
 	@Override
@@ -24,34 +24,62 @@ public class PlayerUser implements Player{
 	}
 
 	@Override
-	public void placeCard(Card card) {
-		logic.cardPlaced(card);
-
+	public void placeCard(int cardID) {
+		for (int i = 0; i < hand.size(); i++) {
+			if(hand.get(i).getId() == cardID) {
+				try {
+					Card c = hand.get(i);
+					logic.cardPlaced(c);
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+				
+		}
 	}
 
 	@Override
-	public void takeCard(List<Integer> cardIDList, int cardID, int index) {
-		if(logic.cardTaken(cardIDList, cardID, playerID))
-			cards.remove(index);
+	public boolean takeCard(List<Integer> cardIDList, int cardID, int index) {
+		if(logic.cardTaken(cardIDList, cardID, playerID)) {
+			hand.remove(index);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public void addToHand(Card card) {
-		cards.add(card);
+		hand.add(card);
+	}
+	
+	@Override
+	public Card getCardOnHand(int cardID) {
+		for (int i = 0; i < hand.size(); i++) {
+			if(hand.get(i).getId() == cardID)
+				return hand.get(i);
+		}
+		return hand.get(0);
 	}
 
 	public List<Card> getHand(){
-		return cards;
+		return hand;
 	}
 
 	public void clearHand(){
-		cards.clear();	
+		hand.clear();	
 	}
 
 	@Override
 	public void removeFromHand(int index) {
-		cards.remove(index);
+		hand.remove(index);
 
+	}
+
+	@Override
+	public void setLogic(GameLogic logic) {
+		// TODO Auto-generated method stub
+		this.logic = logic;
 	}
 
 
