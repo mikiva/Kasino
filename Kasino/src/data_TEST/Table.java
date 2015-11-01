@@ -18,6 +18,10 @@ public class Table {
 	public void removeCard(int index) {
 		onTable.remove(index);
 	}
+	
+	public void clearTable() {
+		onTable.clear();
+	}
 
 	public boolean isCardOnTable(Card card) {
 		for (int j = 0; j < onTable.size(); j++) {
